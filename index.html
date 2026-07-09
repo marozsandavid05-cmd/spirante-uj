@@ -1804,8 +1804,23 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
 
   function enterView(which){
     if(!hasGSAP || reduce){ showView(which); return; }
-    // MOBIL (<768) + DESKTOP: UGYANAZ a crossfade — a hero elore renderelve a chooser MOGE,
-    // a chooser fade-OUT. Nincs fel-tagulas (az okozta a mobil fekete-villanast a tagulo fel alatt).
+    // MOBIL (<768): stacked kartyak. Tap = a masik fel fade-out, a valasztott teljes magassagra nyilik,
+    // a hatter finoman zoomol, majd showView. (Ez a valos mobilon mukodo ut; a crossfade-et desktopra tartjuk.)
+    if(matchMedia('(max-width:767px)').matches){
+      var chosenM = document.querySelector(which==='bottle' ? '.half--bottle' : '.half--can');
+      var otherM  = document.querySelector(which==='bottle' ? '.half--can' : '.half--bottle');
+      var imgM = chosenM.querySelector('.half__bg img');
+      document.body.classList.add('show-'+which);   // hero elore a chooser moge -> nincs fekete res a tagulaskor
+      gsap.set(chosenM,{zIndex:5});
+      var expand = which==='bottle' ? {bottom:'0%'} : {top:'0%'};
+      gsap.timeline({onComplete:function(){ showView(which); }})
+        .to(otherM,{autoAlpha:0, duration:0.45, ease:'power2.in'},0)
+        .to(chosenM, Object.assign({duration:0.55, ease:'power3.inOut'}, expand),0)
+        .to(imgM,{scale:1.04, duration:0.6, ease:'power2.out'},0)
+        .to(landingEl,{autoAlpha:0, duration:0.4, ease:'power2.in'},0.45);
+      setTimeout(function(){ if(current!==which) showView(which); }, 1200);
+      return;
+    }
     // CROSSFADE (Aurora motion demo 2 -> David valasztotta): a hero ELORE renderelve a chooser MOGOTT (z-stack),
     // a chooser-overlay fade-OUT, a hero-bg finom scale-settle. NINCS panel-width/clip anim (az volt a broken-frame oka).
     var root=document.querySelector('.view--'+which);
@@ -1865,7 +1880,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
 
   /* nav: vissza, masik oldalra valtas, belso scroll */
   document.querySelectorAll('[data-back]').forEach(function(b){ b.addEventListener('click', function(e){ e.preventDefault(); backToSplit(); }); });
-  document.querySelectorAll('[data-switch]').forEach(function(b){ b.addEventListener('click', function(e){ e.preventDefault(); var to=current==='bottle'?'can':'bottle'; backToSplit(); enterView(to); }); });
+  document.querySelectorAll('[data-switch]').forEach(function(b){ b.addEventListener('click', function(e){ e.preventDefault(); if(!current) return; var to=current==='bottle'?'can':'bottle'; showView(to); }); });
   document.querySelectorAll('[data-scroll]').forEach(function(a){
     a.addEventListener('click', function(e){
       var id=a.getAttribute('href'); if(!id||id.charAt(0)!=='#') return;
