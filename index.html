@@ -1854,18 +1854,30 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   }
 
   /* landing felek: kattintas -> enterView (anchor fallback no-JS eseten) */
+  var enterLock=false;
   document.querySelectorAll('.half[data-enter]').forEach(function(half){
+    // iOS-Safari: hover-elemen az ELSO tap csak :hover-t aktival, a click 2. tapre megy.
+    // Touch eszkozon ezert touchend-en navigalunk (elso tapre), a hover-dim pedig NEM fut touchon.
+    if(touch){
+      half.addEventListener('touchend', function(e){
+        e.preventDefault();
+        if(enterLock) return; enterLock=true; setTimeout(function(){enterLock=false;},800);
+        enterView(half.getAttribute('data-enter'));
+      }, {passive:false});
+    }
     half.addEventListener('click', function(e){
       e.preventDefault();
+      if(enterLock) return; enterLock=true; setTimeout(function(){enterLock=false;},800);
       enterView(half.getAttribute('data-enter'));
     });
-    // hover: a masik fel tompul
-    half.addEventListener('mouseenter', function(){
-      document.querySelectorAll('.half[data-enter]').forEach(function(h){ if(h!==half) h.classList.add('is-dim'); });
-    });
-    half.addEventListener('mouseleave', function(){
-      document.querySelectorAll('.half[data-enter]').forEach(function(h){ h.classList.remove('is-dim'); });
-    });
+    if(!touch){
+      half.addEventListener('mouseenter', function(){
+        document.querySelectorAll('.half[data-enter]').forEach(function(h){ if(h!==half) h.classList.add('is-dim'); });
+      });
+      half.addEventListener('mouseleave', function(){
+        document.querySelectorAll('.half[data-enter]').forEach(function(h){ h.classList.remove('is-dim'); });
+      });
+    }
   });
 
   /* bottle fel: kurzor-koveto epulet-fenykeve (elegans hover, degradalhato) */
