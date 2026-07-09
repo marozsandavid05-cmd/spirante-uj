@@ -1,3 +1,22 @@
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Drawbridge visual-feedback bridge (never commit)
+.moat/
+
+# Claude Code configuration
+.claude/
+
+# Windsurf configuration
+.windsurf/
+
+# Codex CLI configuration
+.codex/
+
+# preview/demo/QA artifacts (never deploy)
+chooser-b.html
+chooser-motion-*.html
+_aurora-ref/
+_caesar-qa-uj-push/
+_qa-greed-0709/

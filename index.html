@@ -9,7 +9,10 @@
 <meta name="description" content="ICON Spirante IX prémium spritz. 750 ml Prestige üveg az esti elegancia, 250 ml Walking Pack a fesztivál energia. Pure Taste. Iconic Moments.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Jost:wght@300;400;500;600&family=Pinyon+Script&family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+<!-- above-fold chooser keyartok preload (LCP): avif elsokent, a bongeszo a tamogatott formatumot valasztja -->
+<link rel="preload" as="image" type="image/avif" href="media/keyart-750left-825.avif" fetchpriority="high">
+<link rel="preload" as="image" type="image/avif" href="media/keyart-can-1280.avif" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Jost:wght@300;400;500;600&family=Pinyon+Script&family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    ICON SPIRANTE IX — Split Underground
@@ -24,7 +27,7 @@
   --gold:#A9781A;           /* arany alap */
   --gold-bright:#E7B53F;    /* arany csucsfeny */
   --line:rgba(244,239,228,.12);
-  --font-display:'Fraunces',Georgia,'Times New Roman',serif;
+  --font-display:'Cinzel',Georgia,'Times New Roman',serif;   /* David valasztas (Aurora 750 tipo 2.kor): monumentalis romai kapitalis, HU-safe (Ő/Ű OK) */
   --font-body:'Jost',system-ui,sans-serif;
   --font-script:'Pinyon Script',cursive;
   --font-graf:'Rubik Wet Paint',system-ui,cursive;
@@ -44,8 +47,8 @@ html.lenis,html.lenis body{height:auto}
 .lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}
 .lenis [data-lenis-prevent]{overscroll-behavior:contain}
 .lenis.lenis-smooth iframe{pointer-events:none}
-h1,h2,h3,h4{font-family:var(--font-display);font-weight:500;line-height:1.0;letter-spacing:-.01em;font-optical-sizing:auto}
-/* Fraunces: lagy-szelaru display arnyalat + valodi dolt — luxus editorial karakter */
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:500;line-height:1.08;letter-spacing:.015em;font-optical-sizing:auto}   /* Cinzel: romai kapitalis -> enyhe pozitiv tracking + lazabb sortav (caps nem tapadhat) */
+/* Cinzel: monumentalis romai kapitalis display, HU-safe (Ő/Ű), luxus editorial karakter */
 h1,h2,h3,h4{font-variation-settings:"SOFT" 0,"WONK" 0}
 h1 em,h2 em,h3 em,h4 em,.hero__title em{font-variation-settings:"SOFT" 28,"WONK" 1}
 a{color:inherit;text-decoration:none}
@@ -69,7 +72,7 @@ html:not(.js) .loader{display:none}
 /* ha a korkapu aktiv, a betolto-sav rejtve (a gate veszi at) */
 .loader.age-gate-on .loader__bar{display:none}
 
-/* ============ KORKAPU (AGE-GATE) — fekete + arany, Fraunces cim ============ */
+/* ============ KORKAPU (AGE-GATE): fekete + arany, Cinzel cim ============ */
 .agegate{margin-top:2.2rem;width:min(92vw,420px);text-align:center}
 .agegate[hidden]{display:none}
 .agegate__lead{font-family:var(--font-body);font-size:.92rem;color:var(--ink);opacity:.86;margin-bottom:1.4rem;letter-spacing:.01em}
@@ -180,39 +183,46 @@ body.show-bottle::after, body.show-can::after{
 .half.is-entering .half__cta::after{width:2.4rem}   /* freeze the hover underline mid-morph */
 
 /* Uveges fel: jobb-fent (atlo folott) */
-.half--bottle{clip-path:polygon(0 0,100% 0,100% 100%,0 0)}
-/* a 16:9-re kiterjesztett leopardos plakat -> cover: kitolti a felet, nincs fekete void, teljes kompozicio */
-.half--bottle .half__bg{transform:translate(-2%,-4%) scale(1.18)}
-.half--bottle .half__bg img{object-fit:cover;object-position:64% 56%}
-.half--bottle .half__scrim{background:linear-gradient(210deg,rgba(10,9,8,0) 0%,rgba(10,9,8,.18) 50%,rgba(10,9,8,.66) 100%)}
+/* Aurora ref: dolt kozel-fuggoleges vagas (top 55% -> bottom 41%), NEM sarok-haromszog -> ember+termek MINDKET felen elfer */
+.half--bottle{clip-path:polygon(0 0,55% 0,46% 100%,0 100%)}
+/* Aurora FEL-PANEL technika: a bg a bal PANELT fedi (~56%), NEM a teljes viewportot -> a portre a fel-panel szelesseget tolti, a palack a seamtol el (nincs nyujtas/homaly) */
+.half--bottle .half__bg{left:0;right:auto;width:56%}
+/* uveges fel MOST bal-lent: a leopardos plakat kozep-bal magja (ferfi arc + parduc + uveg) a lathato ekbe huzva */
+/* Aurora dedikalt ALLO crop (chooser-750-left-portrait.png 1100x1400), a subject BALRA komponalva -> object-fit:cover + object-position 40% 50% (palack hajszallal a seamtol el, ferfi+parduc balra), NULLA zoom (cover csak lefele skalaz -> eles, 0 felskalazas). A HERO (szeles) marad hf. */
+.half--bottle .half__bg img{object-fit:cover;object-position:35% 50%}   /* Aurora spec (desktop wide crop); mobil override 50% 46% a mobil blokkban */
+/* ref scrimL: lokalis folt a bal-also sarokba (szoveg mogott), NEM globalis sotetites */
+.half--bottle .half__scrim{background:radial-gradient(120% 90% at 10% 92%,rgba(10,9,8,.88) 0%,rgba(10,9,8,.38) 42%,transparent 66%)}
 /* elegans kurzor-koveto fenykeve: a hatterben az epulet "megvilagitodik" hoverkor */
 .half--bottle .half__glow{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .55s var(--ease);
-  background:radial-gradient(240px 240px at var(--gx,70%) var(--gy,38%),rgba(231,181,63,.5),rgba(231,181,63,.1) 45%,transparent 70%);
+  background:radial-gradient(240px 240px at var(--gx,26%) var(--gy,62%),rgba(231,181,63,.5),rgba(231,181,63,.1) 45%,transparent 70%);
   mix-blend-mode:soft-light}
 .half--bottle:hover .half__glow{opacity:1}
-.half--bottle .half__content{top:clamp(5.5rem,16vh,11rem);right:var(--pad);text-align:right;align-items:flex-end;z-index:3}
-.half--bottle .half__title{font-family:var(--font-display);font-style:italic;font-weight:500;font-size:clamp(2.6rem,6.5vw,5.6rem)}
+.half--bottle .half__content{bottom:clamp(4.5rem,14vh,9rem);left:var(--pad);text-align:left;align-items:flex-start;z-index:3}
+.half--bottle .half__title{font-family:var(--font-display);font-style:normal;font-weight:500;font-size:clamp(2.6rem,6.5vw,5.6rem)}
 
-/* Dobozos fel: bal-lent (atlo alatt) — clip degeneralt csucs: TISZTA atlos wipe nyitaskor */
-.half--can{clip-path:polygon(0 0,100% 100%,100% 100%,0 100%)}
-.half--can .half__bg{transform:translate(-15%,12%) scale(1.32)}
-.half--can .half__bg img{object-position:50% 50%}
-.half--can .half__scrim{background:linear-gradient(330deg,rgba(10,9,8,.40) 0%,rgba(10,9,8,.74) 58%,rgba(10,9,8,.93) 100%)}
-/* fesztival party-fenyek: piros / kek / magenta, finoman lelegzik */
+/* Dobozos fel: jobb-fent (atlo folott) — clip degeneralt csucs: TISZTA atlos wipe nyitaskor */
+.half--can{clip-path:polygon(55% 0,100% 0,100% 100%,46% 100%)}
+/* Aurora FEL-PANEL: a jobb bg a jobb PANELT fedi (~60%), cover, nincs zoom */
+.half--can .half__bg{left:auto;right:0;width:60%;transform:none}
+.half--can .half__bg img{object-position:62% 42%}
+/* ref scrimR: lokalis folt a jobb-felso sarokba (szoveg mogott) */
+.half--can .half__scrim{background:linear-gradient(255deg,rgba(10,9,8,.82) 8%,rgba(10,9,8,.30) 34%,transparent 55%)}
+/* fesztival party-fenyek: piros / kek / magenta, finoman lelegzik (jobb-fenti ekhez tukrozve) */
 .half--can .half__party{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen;opacity:0;
   background:
-    radial-gradient(46% 52% at 16% 82%,rgba(255,42,92,.5),transparent 68%),
-    radial-gradient(42% 48% at 82% 26%,rgba(42,118,255,.46),transparent 68%),
-    radial-gradient(34% 42% at 58% 96%,rgba(214,46,255,.4),transparent 70%)}
+    radial-gradient(46% 52% at 84% 18%,rgba(255,42,92,.5),transparent 68%),
+    radial-gradient(42% 48% at 18% 74%,rgba(42,118,255,.46),transparent 68%),
+    radial-gradient(34% 42% at 42% 6%,rgba(214,46,255,.4),transparent 70%)}
 .js .half--can .half__party{opacity:.34;animation:party 9s ease-in-out infinite alternate}
 @keyframes party{0%{filter:hue-rotate(-12deg);transform:translateY(0) scale(1)}100%{filter:hue-rotate(18deg);transform:translateY(-2.5%) scale(1.06)}}
-.half--can .half__content{bottom:clamp(4.5rem,14vh,9rem);left:var(--pad);text-align:left;align-items:flex-start;z-index:3}
+.half--can .half__content{top:clamp(5.5rem,16vh,11rem);right:var(--pad);text-align:right;align-items:flex-end;z-index:3}
 .half--can .half__title{font-family:var(--font-graf);font-size:clamp(2.4rem,6vw,5rem);color:var(--ink);letter-spacing:.01em;line-height:1.02}
 .half--can .half__9{font-family:var(--font-display);font-weight:600;color:var(--gold-bright);font-size:clamp(1.6rem,3vw,2.4rem);line-height:1}
 
 /* product-led chooser: darken the scene a touch so the products read first */
-.half--bottle .half__bg img{filter:brightness(.86) saturate(.94)}
-.half--can .half__bg img{filter:brightness(.88)}
+/* minimalis globalis korrekcio (a kontrasztot a lokalis scrimek adjak, nem globalis sotetites) */
+.half--bottle .half__bg img{filter:brightness(.98) saturate(.96)}
+.half--can .half__bg img{filter:brightness(.98)}
 /* dimmeles a masik felen hoverkor (JS adja a .is-dim-et) */
 .half.is-dim .half__scrim{opacity:.55}
 .half.is-dim .half__bg img{filter:saturate(.45) brightness(.55)}
@@ -224,13 +234,47 @@ body.show-bottle::after, body.show-can::after{
 /* kozep felirat */
 .landing__center{position:absolute;z-index:4;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;width:max-content;max-width:90vw}
 .landing__brand{font-family:var(--font-body);letter-spacing:.5em;font-size:.7rem;text-transform:uppercase;color:var(--ink);opacity:.85}
-.landing__prompt{font-family:var(--font-display);font-style:italic;font-size:clamp(1.1rem,2.2vw,1.7rem);color:var(--ink);margin-top:.5rem}
+.landing__prompt{font-family:var(--font-display);font-style:normal;font-size:clamp(1.1rem,2.2vw,1.7rem);color:var(--ink);margin-top:.5rem}
 .landing__hint{font-family:var(--font-body);letter-spacing:.26em;font-size:.62rem;text-transform:uppercase;color:var(--muted);margin-top:1.1rem}
 .landing__divider{width:1px;height:2.4rem;margin:.8rem auto 0;background:linear-gradient(var(--gold-bright),transparent)}
-@media(max-width:680px){
-  .landing__center{top:46%}
-  .half--bottle .half__content{top:5rem}
-  .half--can .half__content{bottom:4rem}
+/* ============ B BUILD — TABLET (768-1023): diagonal marad, headline-skala le, crop-recheck ============ */
+@media(min-width:768px) and (max-width:1023px){
+  .half--bottle .half__title{font-size:clamp(2.4rem,6vw,4.4rem)}
+  .half--can .half__title{font-size:clamp(2.2rem,5.6vw,4rem)}
+  .half--bottle .half__bg{transform:none}   /* fel-panel cover, nincs nagyitas (elesseg) */
+  .half--can .half__bg{transform:none}
+}
+
+/* ============ B BUILD — MOBIL STACK (<768): a diagonal szetbomlik KET teljes szelessegu, egymas ala rakott felre (750 felul) ============ */
+@media(max-width:767px){
+  /* a fixed inset:0 landing = a viewport; a felek abszolut, top/bottom %-inszettel felezve (a containing block magassagahoz merve) -> determinista, nincs height:% / viewport-unit / grid-1fr kvirk */
+  .js .landing{display:block!important}
+  .seam,.landing__center{display:none!important}
+  .half{position:absolute!important;left:0!important;right:0!important;width:auto;height:auto;
+    min-height:0;overflow:hidden;clip-path:none!important;z-index:auto!important}
+  .half--bottle{top:0!important;bottom:50%!important;border-bottom:1px solid rgba(231,181,63,.5)}
+  .half--can{top:50%!important;bottom:0!important}
+  .half__bg{transform:none!important;inset:0!important;width:auto!important}   /* mobilon full-width stacked (a desktop fel-panel width feloldva) */
+  /* recrop a stack-hez: alany + termek frame-ben, tomorebb kivagas */
+  /* bottle: a palack a hf-forras kozep-jobb also reszen -> object-position kozep-jobbra + kicsit le, hogy a palack + ferfi+parduc a kartyaba essen (Aurora comp-note) */
+  .half--bottle .half__bg img{object-position:50% 46%;filter:brightness(.9) saturate(.96)}
+  .half--can .half__bg img{object-position:52% 30%;filter:brightness(.92)}
+  .half__party{display:none}
+  .half--bottle .half__glow{display:none}
+  /* LOKALIS scrim a szoveg mogott, nem globalis sotetites. bottle: FONT scrim (szoveg felul, a baked ICON Spirante IX lockup ALUL marad, nem utkozik). can: LENT. */
+  .half--bottle .half__scrim{background:linear-gradient(180deg,rgba(10,9,8,.93) 0%,rgba(10,9,8,.55) 34%,rgba(10,9,8,0) 64%)!important;opacity:1}
+  .half--can .half__scrim{background:linear-gradient(0deg,rgba(10,9,8,.92) 0%,rgba(10,9,8,.55) 32%,rgba(10,9,8,0) 62%)!important;opacity:1}
+  /* 2-osztalyos szelektor, hogy a can jobb-igazitasat (line 209) is felulirja */
+  .half--bottle .half__content,.half--can .half__content{position:absolute;left:clamp(1.2rem,5vw,1.8rem);right:clamp(1.2rem,5vw,1.8rem);
+    max-width:none;text-align:left;align-items:flex-start;gap:.45rem}
+  .half--bottle .half__content{top:clamp(1.3rem,4vh,2rem);bottom:auto}   /* bal-FONT, a baked lockup fole */
+  .half--can .half__content{bottom:clamp(1.4rem,4vh,2.2rem);top:auto}    /* bal-ALUL */
+  .half--bottle .half__title{font-size:clamp(2.1rem,10vw,3rem)}
+  .half--can .half__title{font-size:clamp(2rem,9vw,2.8rem);color:var(--ink)}
+  .half__line{font-size:.84rem}
+  .half--can .half__9{font-size:1.5rem;order:-1}
+  .half__cta::after{width:2.4rem}
+  .half .eyebrow{letter-spacing:.16em}
 }
 
 /* landing belepo (CSS, .js prefix) */
@@ -256,7 +300,7 @@ body.show-bottle::after, body.show-can::after{
 .js body.show-bottle .nav,.js body.show-can .nav{display:flex}
 .nav--hidden{transform:translateY(-130%)}
 .nav--solid{background:rgba(10,9,8,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav__brand{font-family:var(--font-display);font-style:italic;font-size:1.35rem;color:var(--ink)}
+.nav__brand{font-family:var(--font-display);font-style:normal;font-size:1.35rem;color:var(--ink)}
 .nav__brand b{font-style:normal;font-weight:600;color:var(--gold-bright);font-family:var(--font-body);font-size:.85rem;letter-spacing:.2em;margin-left:.3rem}
 .nav__links{display:flex;gap:2rem;align-items:center}
 .nav__links a{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:color .3s}
@@ -307,7 +351,7 @@ body.show-bottle::after, body.show-can::after{
 @media (max-width:768px),(prefers-reduced-motion:reduce){.view-amb__dust{display:none}}
 
 /* UVEGES — esti elegancia: arany-zart hue (38->44), restrained */
-.view--bottle{--amb-hs:38;--amb-he:44;--amb-ho:-6;--amb-sat:55%;--amb-tex:url('media/brand-leopard-wide.png')}
+.view--bottle{--amb-hs:38;--amb-he:44;--amb-ho:-6;--amb-sat:55%;--amb-tex:url('media/hf_20260708_173036_2d71e5f0-6500-49f5-b7ba-5a47db645f05.png')}
 .view--bottle .view-amb__base{background:radial-gradient(120% 90% at 50% -10%, #1A130A 0%, #0A0908 52%, #050403 100%)}
 .view--bottle .view-amb__tex::before{opacity:.08;filter:blur(8px) saturate(.5) brightness(.55)}
 .view--bottle .view-amb__dust{opacity:.45}
@@ -330,10 +374,10 @@ body.show-bottle::after, body.show-can::after{
 /* ===== STEP 3 — PRODUCT-FOCUS HERO (scene back, product + wordmark forward) ===== */
 /* BOTTLE hero — directed darken + gold key-light behind the bottle (bottom-right) */
 .view--bottle .hero__title{
-  font-family:var(--font-display);font-style:italic;font-weight:500;
+  font-family:var(--font-display);font-style:normal;font-weight:500;
   font-size:clamp(2.9rem,10vw,9.2rem);letter-spacing:-.015em;line-height:.96;
   color:#EDE6D6;text-shadow:0 2px 40px rgba(10,9,8,.7),0 0 1px rgba(10,9,8,.5)}
-.view--bottle .hero__title em{color:var(--gold-bright);font-style:italic}   /* one gold accent word */
+.view--bottle .hero__title em{color:var(--gold-bright);font-style:normal}   /* one gold accent word (Cinzel upright, szin adja a hangsulyt) */
 /* ITEM 2 — a TERMEK (uveg) lathato: arany reflektor a palack mogott, KONNYEBB also scrim,
    talaj-fenykeve + vignetta-formazas. A keyart (ember+parduc+uveg) marad, csak megvilagitva. */
 .view--bottle .hero__scrim{
@@ -357,7 +401,7 @@ body.show-bottle::after, body.show-can::after{
   box-shadow:inset 0 0 26vh 9vh rgba(0,0,0,.55)}
 /* a keyart fenyesebb mint korabban, hogy a termek olvashato legyen */
 .view--bottle .hero__bg img{filter:brightness(.98) saturate(.96) contrast(1.04)}
-/* arany feny-sopres a wordmarkon (Fraunces) */
+/* arany feny-sopres a wordmarkon (Cinzel) */
 .view--bottle .hero__title{position:relative}
 .view--bottle .hero__title::after{content:'';position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(115deg,transparent 35%,rgba(231,181,63,.40) 50%,transparent 65%);
@@ -451,7 +495,7 @@ body.show-bottle::after, body.show-can::after{
 /* MARQUEE */
 .marquee{overflow:hidden;border-block:1px solid var(--line);padding-block:1.4rem;background:var(--paper-2)}
 .marquee__in{display:flex;gap:2.4rem;white-space:nowrap;width:max-content;animation:mq 30s linear infinite}
-.marquee__in span{font-family:var(--font-display);font-style:italic;font-size:clamp(1.6rem,4.5vw,3rem);color:var(--muted)}
+.marquee__in span{font-family:var(--font-display);font-style:normal;font-size:clamp(1.6rem,4.5vw,3rem);color:var(--muted)}
 .marquee__in b{color:var(--gold-bright);font-style:normal;font-weight:500}
 @keyframes mq{to{transform:translateX(-50%)}}
 
@@ -470,28 +514,38 @@ body.show-bottle::after, body.show-can::after{
 .band__in{position:relative;z-index:2;padding-inline:var(--pad);max-width:24ch}
 .band__in h2{font-size:clamp(2rem,6vw,4.4rem)}
 
-/* 9% STAT band — a szam a hos, editorial bal-igazitas; tiszta tinta-mezo a szam mogott */
-.band--stat{place-items:center}
-.band--stat .band__bg img{object-position:50% 44%;filter:saturate(.55) brightness(.9)}
-.band--stat .band__scrim{background:
-  linear-gradient(90deg,rgba(7,6,5,.96) 0%,rgba(7,6,5,.9) 30%,rgba(7,6,5,.62) 58%,rgba(7,6,5,.4) 100%),
-  linear-gradient(180deg,rgba(7,6,5,.5) 0%,transparent 34%,rgba(7,6,5,.72) 100%)}
-.band--stat::after{content:'';position:absolute;z-index:1;inset:0;pointer-events:none;
-  background:radial-gradient(58% 70% at 26% 52%,rgba(7,6,5,.82) 0%,rgba(7,6,5,.5) 42%,transparent 72%)}
+/* 9% STAT band (fable2 forma) — full-bleed kep, lagy bal->jobb scrim, 9 + szoveg egy sorban */
+.band--stat{place-items:stretch}
+.band--stat .band__bg img{object-position:50% 42%;filter:saturate(.66) brightness(1.04)}
+.band--stat .band__scrim{background:linear-gradient(90deg,rgba(10,9,8,.9) 0%,rgba(10,9,8,.82) 26%,rgba(10,9,8,.5) 55%,rgba(10,9,8,.2) 100%)}
+.band--stat .band__glow{position:absolute;z-index:1;left:2%;top:18%;width:48%;height:64%;pointer-events:none;
+  background:radial-gradient(50% 50% at 40% 50%,rgba(231,181,63,.16),transparent 70%)}
 .band__stat{position:relative;z-index:2;width:100%;max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);
-  display:grid;justify-items:start;text-align:left}
-.band__rule{width:clamp(3rem,7vw,5.5rem);height:1px;border:0;background:var(--gold-bright);opacity:.6;margin:1.3rem 0 .2rem}
-.band__fig{display:flex;align-items:flex-start;gap:.04em;line-height:.88;color:var(--gold-bright);
-  font-family:var(--font-display);font-weight:600;margin:.2rem 0 2.8rem;
-  text-shadow:0 4px 30px rgba(0,0,0,.7),0 0 90px rgba(7,6,5,.85)}
-.band__num{font-size:clamp(7rem,21vw,17rem)}
-.band__pct{font-size:clamp(2.4rem,5.5vw,4.4rem);margin-top:.5em}
-.band__say{font-family:var(--font-display);font-weight:400;font-style:italic;
-  font-size:clamp(1.35rem,2.5vw,2.3rem);line-height:1.16;max-width:22ch;color:var(--ink);opacity:.92}
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(1.5rem,5vw,5rem);align-items:center;text-align:left}
+.band__fig{display:flex;align-items:flex-start;gap:.02em;line-height:.85;color:var(--gold-bright);
+  font-family:var(--font-display);font-weight:600;margin:0;
+  text-shadow:0 4px 30px rgba(0,0,0,.7),0 0 90px rgba(231,181,63,.25)}
+.band__num{font-size:clamp(6.5rem,20vw,16rem)}
+.band__pct{font-size:clamp(2.6rem,8vw,6.4rem);opacity:1;margin-top:.16em;letter-spacing:-.02em}   /* Aurora fix: ~40%-a a 9 magassaganak, teljes atlatszatlansag, felso index kis res -> messzirol olvashato */
+.band__say{display:flex;flex-direction:column;gap:1rem;max-width:34ch}
+.band__say .eyebrow{color:var(--gold-bright)}
+.band__say h2{font-family:var(--font-display);font-weight:500;font-style:normal;
+  font-size:clamp(1.5rem,3vw,2.4rem);line-height:1.18;color:var(--ink)}
+.band__say p{color:var(--muted);max-width:38ch;line-height:1.5}
 
 /* CLOSER + BACK */
 .closer{text-align:center}
 .closer h2{font-size:clamp(2.2rem,6vw,4.6rem);max-width:18ch;margin-inline:auto}
+/* ZARO ATMOSZFERA (Aurora 750-zaro-atmoszfera spec): tiszta hibiscus-serve kep sotetitve+arany tonus+blur, kozep-scrim a cim olvashatosagaert, vignetta, arany szikra-flekkek, grain. A szoveg marad a hos, nulla generikus gradiens. Csak a 750 (bottle) zaron. */
+.closer--atmo{position:relative;min-height:74vh;display:grid;place-items:center;overflow:hidden;padding-block:clamp(4rem,10vw,8rem)}
+.closer--atmo .closer__bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.closer--atmo .closer__bg img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:saturate(1.08) brightness(.6) contrast(1.04) blur(1px);opacity:.66}
+.closer--atmo .closer__scrim{position:absolute;inset:0;background:radial-gradient(66% 58% at 50% 45%,rgba(0,0,0,.74),rgba(0,0,0,.34) 52%,transparent 82%)}
+.closer--atmo .closer__vig{position:absolute;inset:0;background:radial-gradient(88% 78% at 50% 45%,transparent 50%,rgba(8,6,4,.8))}
+.closer--atmo .closer__grain{position:absolute;inset:0;opacity:.06;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.closer--atmo .closer__fleck{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(231,200,119,.9),rgba(231,200,119,0) 70%)}
+.closer--atmo .closer__in{position:relative;z-index:2;text-align:center;padding-inline:var(--pad)}
+@media (prefers-reduced-motion:reduce){.closer--atmo .closer__bg img{filter:saturate(1.05) brightness(.62) contrast(1.02)}}
 .btn{display:inline-flex;align-items:center;gap:.7rem;margin-top:2rem;padding:1rem 2rem;border:1px solid var(--gold-bright);border-radius:100px;
   font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-bright);background:transparent;cursor:pointer;
   transition:background .35s var(--ease),color .35s var(--ease)}
@@ -499,7 +553,7 @@ body.show-bottle::after, body.show-can::after{
 
 /* FOOTER */
 .foot{background:#070605;border-top:1px solid var(--line);text-align:center;padding-block:clamp(3rem,7vh,5rem)}
-.foot__brand{font-family:var(--font-display);font-style:italic;font-size:clamp(2rem,5vw,3rem);color:var(--ink)}
+.foot__brand{font-family:var(--font-display);font-style:normal;font-size:clamp(2rem,5vw,3rem);color:var(--ink)}
 .foot__tag{font-family:var(--font-body);letter-spacing:.3em;font-size:.66rem;text-transform:uppercase;color:var(--gold-bright);margin-top:.8rem}
 .foot__legal{color:var(--muted);font-size:.72rem;margin-top:1.6rem;line-height:1.9}
 .foot__18{display:inline-grid;place-items:center;width:2.2rem;height:2.2rem;border:1px solid var(--muted);border-radius:50%;font-size:.7rem;color:var(--muted);margin-bottom:.8rem}
@@ -516,7 +570,7 @@ body.show-bottle::after, body.show-can::after{
 .view--bottle .tl__track{position:absolute;inset:0;background:var(--line)}
 .view--bottle .tl__fill{position:absolute;top:0;left:0;width:100%;height:100%;transform:scaleY(0);transform-origin:top;background:linear-gradient(var(--gold-bright),var(--gold))}
 .js .view--bottle .tl__fill{transform:scaleY(0)}
-.view--bottle .tl__node{position:absolute;left:50%;transform:translate(-50%,-50%);font-family:var(--font-display);font-style:italic;color:var(--gold-bright);font-size:.9rem;background:var(--paper);padding:.4rem 0;letter-spacing:.04em}
+.view--bottle .tl__node{position:absolute;left:50%;transform:translate(-50%,-50%);font-family:var(--font-display);font-style:normal;color:var(--gold-bright);font-size:.9rem;background:var(--paper);padding:.4rem 0;letter-spacing:.04em}
 .view--bottle .tl__node::before{content:'';position:absolute;left:50%;top:-.7rem;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:var(--gold-bright)}
 /* content clears the spine */
 .view--bottle section.wrap{padding-left:max(var(--pad),calc(var(--tl-x,clamp(1.4rem,4vw,3.2rem)) + clamp(2.5rem,7vw,6rem)))}
@@ -533,7 +587,7 @@ body.show-bottle::after, body.show-can::after{
 .view--bottle .philo__text{grid-column:1 / 7}
 .view--bottle .philo__media{grid-column:8 / 13;aspect-ratio:3/4.4;margin-top:clamp(3rem,10vh,9rem);margin-right:calc(var(--pad) * -1);overflow:clip;border-radius:4px 0 0 4px;position:relative}
 .view--bottle .philo__media img{width:100%;height:100%;object-fit:cover}
-.view--bottle .dropcap::first-letter{float:left;font-family:var(--font-display);font-style:italic;font-size:clamp(3.4rem,7vw,5.6rem);line-height:.74;padding:.35rem .6rem 0 0;color:var(--gold-bright)}
+.view--bottle .dropcap::first-letter{float:left;font-family:var(--font-display);font-style:normal;font-size:clamp(3.4rem,7vw,5.6rem);line-height:.74;padding:.35rem .6rem 0 0;color:var(--gold-bright)}
 @media(max-width:780px){
   .view--bottle .philo__text{grid-column:1/13}
   .view--bottle .philo__media{grid-column:1/13;margin:0;aspect-ratio:4/5;border-radius:4px}
@@ -553,7 +607,7 @@ body.show-bottle::after, body.show-can::after{
 .view--bottle .ritual__media{position:relative;min-height:100%;aspect-ratio:4/5;max-height:52vh;overflow:hidden;background:var(--paper-2)}
 .view--bottle .ritual__media img{width:100%;height:100%;object-fit:cover;filter:brightness(.94) saturate(.96)}
 .view--bottle .ritual__body{padding:clamp(1.6rem,3vw,2.8rem) clamp(1.6rem,3vw,2.6rem);display:flex;flex-direction:column;justify-content:center}
-.view--bottle .ritual__num{display:block;font-family:var(--font-display);font-style:italic;
+.view--bottle .ritual__num{display:block;font-family:var(--font-display);font-style:normal;
   font-size:clamp(2.4rem,5vw,3.6rem);color:var(--gold-bright);opacity:.5;line-height:1;margin-bottom:.2rem}
 .view--bottle .ritual__card h3{font-size:var(--step-3);line-height:1.05;margin:.2rem 0 .8rem}
 .view--bottle .ritual__card p{color:var(--muted);max-width:40ch;font-size:1.05rem;line-height:1.6}
@@ -586,6 +640,13 @@ html:not(.js) .view--bottle .ritual__card{opacity:1;transform:none}
   .view--bottle .ed,.view--bottle .ed:nth-child(even){grid-template-columns:1fr}
   .view--bottle .ed__media,.view--bottle .ed:nth-child(even) .ed__media{grid-column:1/13;order:0;aspect-ratio:4/3}
   .view--bottle .ed__body,.view--bottle .ed:nth-child(even) .ed__body{grid-column:1/13}
+}
+@media(max-width:640px){
+  .band__stat{grid-template-columns:1fr;gap:1.3rem}
+  .band--stat .band__num{font-size:clamp(6rem,32vw,9rem)}
+  .band--stat .band__pct{font-size:clamp(3rem,10vw,3.6rem)}   /* mobilon is ~40%-a a 9-nek */
+  .band--stat .band__scrim{background:linear-gradient(180deg,rgba(10,9,8,.5) 0%,rgba(10,9,8,.72) 58%,rgba(10,9,8,.92) 100%)}
+  .band--stat .band__glow{width:70%;height:44%;top:8%}
 }
 
 /* 6.6 gold draw-in wordmark divider */
@@ -648,9 +709,28 @@ html:not(.js) .view--bottle .goldline__p,html:not(.js) .view--bottle .goldline__
 .view--can .hpanel__tag{display:inline-block;margin-top:.6rem;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--paper);background:var(--gold-bright);padding:.3rem .7rem;transform:rotate(var(--tilt))}
 /* the ONE pink moment: tag-crown X-mark on the closing panel */
 .view--can .hpanel--end{background:linear-gradient(160deg,#13100c,#0A0908);display:grid;place-items:center}
-.view--can .hpanel__copy--c{text-align:center;background:none;padding:2rem}
-.view--can .hpanel__crown{display:block;font-family:var(--font-graf);color:var(--pink);font-size:clamp(1.6rem,4vw,2.6rem);margin-bottom:.4rem;transform:rotate(var(--tilt))}
-.view--can .hpanel__cta{font-family:var(--font-graf);font-size:clamp(1.8rem,4vw,3rem);color:var(--ink)}
+/* CR#3 — kompakt, központosított záró-panel: ✕ Icon ✕ + nagy fehér 9% + tagline + cpulse (NINCS gomb) */
+.view--can .hpanel__copy--c{text-align:center;background:none;padding:2rem;
+  display:flex;flex-direction:column;align-items:center;gap:1.1rem;transform:rotate(var(--tilt))}
+.view--can .hpanel__crown{display:block;font-family:var(--font-graf);color:var(--pink);font-size:clamp(1.5rem,3.4vw,2.4rem);transform:rotate(var(--tilt))}
+.view--can .hpanel__big{font-family:var(--font-graf);color:#FFFFFF;font-size:clamp(3rem,7vw,5.4rem);line-height:1;text-shadow:0 4px 26px rgba(0,0,0,.6)}
+.view--can .hpanel__end-tag{font-family:var(--font-body);color:rgba(244,239,228,.82);font-size:clamp(.9rem,1.5vw,1.05rem);letter-spacing:.02em;max-width:24ch}
+
+/* =========================================================
+   CR#3b — "A színtér" band: bottle-tiszta elrendezés-elv, can nyelv, irányított kontraszt-scrim
+   ========================================================= */
+.view--can .band--scene{place-items:stretch;text-align:left}
+/* irányított sötét scrim a SZÖVEG (bal) oldalán -> a cím nem a világos arcokon ül */
+.view--can .band--scene .band__scrim{background:
+  linear-gradient(90deg,rgba(10,9,8,.92) 0%,rgba(10,9,8,.74) 38%,rgba(10,9,8,.36) 66%,rgba(10,9,8,.52) 100%),
+  linear-gradient(180deg,rgba(10,9,8,.5) 0%,transparent 34%,rgba(10,9,8,.72) 100%)}
+.view--can .band--scene .band__in{position:relative;z-index:2;width:100%;max-width:var(--maxw);
+  margin:0 auto;padding-inline:var(--pad);text-align:left;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:.5rem}
+.view--can .band--scene .scene__rule{width:clamp(3rem,7vw,5.5rem);height:2px;border:0;background:var(--pink);opacity:.85;margin:.4rem 0 .9rem}
+.view--can .band--scene h2{font-family:var(--font-graf);color:#FFFFFF;text-align:left;
+  font-size:clamp(2rem,5.4vw,4.2rem);line-height:1.05;max-width:20ch;
+  text-shadow:0 3px 30px rgba(0,0,0,.82),0 1px 2px rgba(0,0,0,.7)}
 @media(max-width:768px),(prefers-reduced-motion:reduce){
   .view--can .hstrip__vp{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .view--can .hpanel{flex-basis:86vw;height:64vh;transform:none}
@@ -703,8 +783,10 @@ html:not(.js) .view--bottle .goldline__p,html:not(.js) .view--bottle .goldline__
 /* MANIFESTO — teljes szelessegu graffiti tipo-robbanas (no sidebar, no body) */
 .view--can .manifesto{display:block;text-align:left}
 .view--can .manifesto__tag{display:inline-block;margin-bottom:1.3rem;transform:rotate(var(--tilt))}
-.view--can .manifesto__h{grid-column:auto;font-family:var(--font-graf);font-size:clamp(3rem,12.5vw,10rem);line-height:.98;letter-spacing:.004em;color:var(--ink);max-width:none}
-.view--can .manifesto__h em{color:var(--ink);font-style:normal}
+/* CR#1 KIÁLTVÁNY: fehér uppercase graffiti, clamp hogy 1920/1440/1024/375-ön BEFÉRJEN (max 2 sor, 0 túlcsordulás) */
+.view--can .manifesto__h{grid-column:auto;font-family:var(--font-graf);font-size:clamp(2.4rem,8.2vw,6.6rem);line-height:1.0;letter-spacing:.004em;color:#FFFFFF;text-transform:uppercase;max-width:14ch}
+.view--can .manifesto__h em{color:#FFFFFF;font-style:normal}
+.view--can .manifesto__h .swipe-mark{color:#FFFFFF}
 /* ITEM 7 — fesztival kezeles: festek-sopres alahuzas (signature gesztus) kulcsszavakra */
 .swipe-mark{position:relative;display:inline-block;color:var(--ink);
   background-image:linear-gradient(90deg,#FF2E5C,#B02EFF);
@@ -727,6 +809,49 @@ html:not(.js) .view--bottle .goldline__p,html:not(.js) .view--bottle .goldline__
 .view--can .scroll-hint{width:auto;height:auto;overflow:visible;background:transparent}
 .view--can .scroll-hint::after{content:'';position:static;display:block;width:9px;height:9px;border-radius:0;background:var(--pink);animation:cpulse 1.05s steps(2,end) infinite}
 @keyframes cpulse{0%,100%{opacity:1}50%{opacity:.12}}
+/* cpulse mint elem (CR#2 eyebrow-négyzet + CR#3 záró-akcent) */
+.cpulse{width:9px;height:9px;background:var(--pink,#FF2E5C);display:inline-block}
+.js .cpulse{animation:cpulse 1.05s steps(2,end) infinite}
+@media (prefers-reduced-motion:reduce){.cpulse{animation:none}}
+
+/* =========================================================
+   CR#2 — 9% szekció (can): duotone fesztivál-háttér + liquid-fill graffiti szám
+   ========================================================= */
+.view--can #sec-9{position:relative;overflow:clip}
+/* duotone koncertfény-háttér (saját, NEM a .duo grid-osztály — az a bottle Ízjegyeké) */
+.view--can #sec-9 .c9__bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:clip;
+  -webkit-mask:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);
+          mask:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent)}
+.view--can #sec-9 .c9__bg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;filter:grayscale(1) contrast(1.06) brightness(.52)}
+.view--can #sec-9 .c9__bg::after{content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(160deg,rgba(201,162,75,.12),rgba(10,9,8,.46) 55%),   /* Aurora: pink wash KI -> near-black + finom pezsgo-arany tint */
+    linear-gradient(90deg,rgba(10,9,8,.9) 22%,rgba(10,9,8,.46) 60%,rgba(10,9,8,.22))}
+.view--can #sec-9 .c9{position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr;
+  gap:clamp(1.5rem,5vw,5rem);align-items:center}
+/* Aurora FINAL delta #4: hot pink KI -> egyseges pezsgo-arany, letisztult szam (drip el: display-font a drippy graf helyett), fekete+arany */
+.c9__fig{position:relative;font-family:var(--font-display);font-weight:600;line-height:.82;letter-spacing:-.02em;
+  font-size:clamp(5.6rem,20vw,15rem);display:flex;align-items:flex-start;
+  text-shadow:0 4px 30px rgba(0,0,0,.75),0 0 90px rgba(201,162,75,.22)}
+.c9__9{position:relative;display:inline-block}
+.c9__9base{color:#8F7A44}                                /* muted pezsgo-arany alap, a fill enne fole */
+.c9__9fill{position:absolute;left:0;top:0;color:transparent;
+  background:linear-gradient(0deg,#C9A24B 0%,#F0D48A 100%);
+  -webkit-background-clip:text;background-clip:text;
+  clip-path:inset(100% 0 0 0)}                           /* pezsgo-arany folyadek alulrol felfele (nincs pink) */
+.c9__pct{color:#C9A24B}
+/* liquid-fill fallback: no-JS / reduced-motion -> teljes, statikus végállapot */
+html:not(.js) .c9__9fill{clip-path:inset(0 0 0 0)}
+.c9__say{display:flex;flex-direction:column;gap:1rem;max-width:36ch}
+.c9__pulse{display:flex;align-items:center;gap:.7em;font-size:.66rem;letter-spacing:.32em;
+  text-transform:uppercase;color:#C9A24B;font-weight:600;font-family:var(--font-body)}
+.c9__pulse .cpulse{background:#C9A24B}   /* a 9% treatment pulzus-negyzet is arany (nincs hot pink) */
+.c9__h{font-family:var(--font-graf);color:#FFFFFF;text-transform:uppercase;
+  font-size:clamp(1.5rem,3.4vw,2.6rem);line-height:1.06;letter-spacing:.01em}
+.c9__body{color:rgba(244,239,228,.8);max-width:34ch}
+.c9__chips{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin-top:.4rem}
+@media(max-width:780px){.view--can #sec-9 .c9{grid-template-columns:1fr;gap:1.8rem}}
+@media (prefers-reduced-motion:reduce){.c9__9fill{clip-path:inset(0 0 0 0)!important}}
 /* EDITIONS — flyposted stamp a konvencional fejlec helyett (hidegen nyit a collage) */
 .view--can .ed-stamp{display:inline-block;font-family:var(--font-graf);font-size:clamp(1.3rem,3.4vw,2.4rem);color:var(--ink);transform:rotate(var(--tilt));margin-bottom:clamp(1.4rem,4vw,2.6rem);border-bottom:2px solid var(--pink);padding-bottom:.25rem}
 /* CLOSER + CTA — kemeny szogletes PINK gomb (nem a bottle arany pirulaja) */
@@ -794,7 +919,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
    Mint a bottle, de fesztival pink felso ellel: a kovetkezo szekcio az elozo
    ALJÁRÓL huzodik fel ra. NINCS pin -> minden vegiggorgetheto. A regi .seam2
    div csak neutralis legter (a kartyak adjak az atmenetet). */
-.view--can .seam2{height:5vh}
+.view--can .seam2{height:0}   /* Dávid: a festival-kep erjen fel a marquee-csikig, ne legyen fekete res (a manifesto festival-bg-je igy a marquee-ig er) */
 .view--can .c-card{position:relative;z-index:1;background:var(--paper);
   max-width:none;width:100%;min-height:100vh;     /* full-bleed (nincs oldalso hezag) + egy teljes kepernyo */
   border-top:2px solid var(--pink);
@@ -894,9 +1019,12 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
      ========================================================= -->
 <section class="landing" aria-label="Válassz egy oldalt">
 
-  <!-- DOBOZOS fel: bal-lent, bulis/fesztival (DOM-ban elobb -> alul) -->
+  <!-- DOBOZOS fel: jobb-fent, bulis/fesztival (DOM-ban elobb -> alul) -->
   <a class="half half--can" href="#view--can" data-enter="can" aria-label="250 ml Walking Pack, fesztivál oldal">
-    <div class="half__bg"><img src="media/brand-party-wide.png" alt="ICON Spirante IX 250 ml Walking Pack, What's your story party"></div>
+    <div class="half__bg"><picture>
+      <source type="image/avif" sizes="100vw" srcset="media/keyart-can-768.avif 768w, media/keyart-can-1280.avif 1280w, media/keyart-can-1920.avif 1920w">
+      <source type="image/webp" sizes="100vw" srcset="media/keyart-can-768.webp 768w, media/keyart-can-1280.webp 1280w, media/keyart-can-1920.webp 1920w">
+      <img src="media/keyart-can-1920.jpg" sizes="100vw" srcset="media/keyart-can-768.jpg 768w, media/keyart-can-1280.jpg 1280w, media/keyart-can-1920.jpg 1920w" alt="ICON Spirante IX 250 ml Walking Pack, What's your story party" fetchpriority="high" decoding="async"></picture></div>
     <div class="half__scrim"></div>
     <div class="half__party" aria-hidden="true"></div>
     <div class="half__content">
@@ -908,9 +1036,18 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     </div>
   </a>
 
-  <!-- UVEGES fel: jobb-fent, esti/elegans (DOM-ban kesobb -> felul) -->
+  <!-- UVEGES fel: bal-lent, esti/elegans (DOM-ban kesobb -> felul) -->
   <a class="half half--bottle" href="#view--bottle" data-enter="bottle" aria-label="750 ml Prestige üveg, esti oldal">
-    <div class="half__bg"><img src="media/brand-leopard-wide.png" alt="ICON Spirante IX 750 ml, Made for Icons, fekete párduc és üveg"></div>
+    <!-- chooser bottle-fel: brand-leopard-wide a David-jovahagyott ref-render szerint (a teljes palack+ferfi belefer a dolt-ekbe); a hero+9%-band marad hf -->
+    <div class="half__bg"><picture>
+      <!-- desktop/tablet (>=768px): SZELES kozel-negyzetes crop (chooser-750-left 1750x1536) -> a landscape ekben cover megtartja a TELJES magassagot, a palack alul BENT marad (a portre itt fuggolegesen levagta a palackot) -->
+      <source media="(min-width:768px)" type="image/avif" sizes="55vw" srcset="media/keyart-750leftW-1000.avif 1000w, media/keyart-750leftW-1750.avif 1750w">
+      <source media="(min-width:768px)" type="image/webp" sizes="55vw" srcset="media/keyart-750leftW-1000.webp 1000w, media/keyart-750leftW-1750.webp 1750w">
+      <source media="(min-width:768px)" sizes="55vw" srcset="media/keyart-750leftW-1000.jpg 1000w, media/keyart-750leftW-1750.jpg 1750w">
+      <!-- mobil (<768px): ALLO portre crop (a teljes szelessegu kartyat kitolti, ferfi+palack eles, David-jovahagyott) -->
+      <source type="image/avif" sizes="100vw" srcset="media/keyart-750left-550.avif 550w, media/keyart-750left-825.avif 825w, media/keyart-750left-1100.avif 1100w">
+      <source type="image/webp" sizes="100vw" srcset="media/keyart-750left-550.webp 550w, media/keyart-750left-825.webp 825w, media/keyart-750left-1100.webp 1100w">
+      <img src="media/keyart-750left-1100.jpg" sizes="100vw" srcset="media/keyart-750left-550.jpg 550w, media/keyart-750left-825.jpg 825w, media/keyart-750left-1100.jpg 1100w" alt="ICON Spirante IX 750 ml, férfi fekete párduccal és a Prestige üveggel, Made for Icons" fetchpriority="high" decoding="async"></picture></div>
     <div class="half__scrim"></div>
     <div class="half__glow" aria-hidden="true"></div>
     <div class="half__content">
@@ -922,15 +1059,10 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   </a>
 
   <!-- atlos arany varrat -->
+  <!-- arany seam PONTOSAN a clip-el koordinatakbol (top 55% -> bottom 41%); %-viewBox + non-scaling-stroke -> breakpointenkent auto-ujraszamol, egyenletes vonalvastagsag -->
   <svg class="seam" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-    <defs>
-      <linearGradient id="seamg" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#A9781A" stop-opacity="0"/>
-        <stop offset=".5" stop-color="#E7B53F" stop-opacity="1"/>
-        <stop offset="1" stop-color="#A9781A" stop-opacity="0"/>
-      </linearGradient>
-    </defs>
-    <line x1="0" y1="0" x2="100" y2="100" stroke="url(#seamg)" stroke-width="1.4" vector-effect="non-scaling-stroke"/>
+    <line x1="55" y1="0" x2="46" y2="100" stroke="#C9A24B" stroke-width="7" stroke-opacity="0.32" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+    <line x1="55" y1="0" x2="46" y2="100" stroke="#E7C877" stroke-width="2.4" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
   </svg>
 
   <!-- kozep felirat -->
@@ -977,7 +1109,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   </div>
 
   <header class="hero is-in-static b-card">
-    <div class="hero__bg" data-parallax="0.16"><img src="media/brand-leopard-wide.png" alt="ICON Spirante IX 750 ml, Made for Icons, fekete párduc és üveg"></div>
+    <div class="hero__bg" data-parallax="0.16"><img src="media/hf_20260708_173036_2d71e5f0-6500-49f5-b7ba-5a47db645f05.png" alt="ICON Spirante IX 750 ml keyart, férfi fekete párduccal a villa lépcsőjén, Made for Icons, arany graffiti korona"></div>
     <div class="hero__scrim"></div>
     <div class="hero__floor" aria-hidden="true"></div>
     <div class="hero__vig" aria-hidden="true"></div>
@@ -990,7 +1122,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
         </div>
         <h1 class="hero__title">
           <span class="line"><span>Az este</span></span>
-          <span class="line"><span><em style="font-style:italic">ikonja</em></span></span>
+          <span class="line"><span><em style="font-style:normal">ikonja</em></span></span>
         </h1>
         <div class="hero__mark"><span class="rule"></span><span class="ws">Icon Spirante IX</span></div>
         <p class="hero__sub">Fehérbor és gin találkozása. Hibiscus, grapefruit és lime, gondosan válogatott karakter. Egy pohár, ami megáll az időben.</p>
@@ -1068,13 +1200,16 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
 
   <!-- FULL-BLEED band — 9% mint hos szam (stack kartya) -->
   <section class="band band--stat b-card">
-    <div class="band__bg" data-parallax="0.1"><img src="media/brand-gin-woman-wide.png" alt="ICON Spirante IX — nő a Prestige üveggel, lila akvarell kulcsvizuál"></div>
+    <div class="band__bg" data-parallax="0.1"><img src="media/brand-gin-woman-wide.png" alt="Nő az ICON Spirante IX Prestige üveggel, lila akvarell kulcsvizuál"></div>
     <div class="band__scrim"></div>
+    <div class="band__glow" aria-hidden="true"></div>
     <div class="band__stat">
-      <span class="eyebrow" data-reveal>A 9% előny</span>
-      <hr class="band__rule" data-reveal data-d="1" aria-hidden="true">
-      <div class="band__fig" data-reveal data-d="2"><span class="band__num">9</span><span class="band__pct">%</span></div>
-      <h2 class="band__say" data-reveal data-d="3">Erőteljesebb karakter,<br>egyetlen kortyban.</h2>
+      <div class="band__fig" data-reveal aria-hidden="true"><span class="band__num">9</span><span class="band__pct">%</span></div>
+      <div class="band__say">
+        <span class="eyebrow" data-reveal data-d="1">A mérték</span>
+        <h2 data-reveal data-d="2">Pontosan ennyi kell az estéhez.</h2>
+        <p data-reveal data-d="3">Több, mint egy pohár bor. Kevesebb, mint egy tomboló éjszaka. Egyensúly, ami órákon át kitart, és nem kér bocsánatot.</p>
+      </div>
     </div>
   </section>
 
@@ -1087,9 +1222,9 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
         <h2 style="font-size:var(--step-3);margin-top:1rem">Többrétegű aromaprofil</h2>
         <p style="margin-top:1.2rem;color:var(--muted);max-width:48ch">Friss, intenzív és karakteres. Könnyen fogyasztható, mégis prémium élmény.</p>
         <div class="rows" style="margin-top:1.8rem">
-          <div class="row"><span class="row__idx">01</span><span class="row__name" style="font-style:italic">Hibiscus</span><span class="row__tag">Florális mélység</span></div>
-          <div class="row"><span class="row__idx">02</span><span class="row__name" style="font-style:italic">Grapefruit</span><span class="row__tag">Citrusos él</span></div>
-          <div class="row"><span class="row__idx">03</span><span class="row__name" style="font-style:italic">Lime</span><span class="row__tag">Friss zárás</span></div>
+          <div class="row"><span class="row__idx">01</span><span class="row__name" style="font-style:normal">Hibiscus</span><span class="row__tag">Florális mélység</span></div>
+          <div class="row"><span class="row__idx">02</span><span class="row__name" style="font-style:normal">Grapefruit</span><span class="row__tag">Citrusos él</span></div>
+          <div class="row"><span class="row__idx">03</span><span class="row__name" style="font-style:normal">Lime</span><span class="row__tag">Friss zárás</span></div>
         </div>
       </div>
     </div>
@@ -1118,10 +1253,26 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     </div>
   </section>
 
-  <!-- CLOSER -->
-  <section class="wrap closer">
-    <h2 data-reveal>Nem követjük a trendeket. Alakítjuk őket.</h2>
-    <button class="btn" data-back type="button" data-reveal data-d="1">Vissza a választáshoz</button>
+  <!-- CLOSER — Aurora zaro-atmoszfera (hibiscus serve, sotetitve+arany tonus, on-brand) -->
+  <section class="closer closer--atmo" aria-label="Záró">
+    <div class="closer__bg" aria-hidden="true">
+      <img src="media/ritual-hibiscus.png" alt="" loading="lazy" decoding="async">
+      <span class="closer__scrim"></span>
+      <span class="closer__vig"></span>
+      <span class="closer__grain"></span>
+      <i class="closer__fleck" style="left:14%;top:22%;width:5px;height:5px"></i>
+      <i class="closer__fleck" style="left:22%;top:64%;width:3px;height:3px;opacity:.7"></i>
+      <i class="closer__fleck" style="left:78%;top:30%;width:4px;height:4px;opacity:.8"></i>
+      <i class="closer__fleck" style="left:85%;top:70%;width:6px;height:6px;opacity:.6"></i>
+      <i class="closer__fleck" style="left:34%;top:14%;width:2px;height:2px;opacity:.6"></i>
+      <i class="closer__fleck" style="left:64%;top:80%;width:3px;height:3px;opacity:.7"></i>
+      <i class="closer__fleck" style="left:9%;top:48%;width:3px;height:3px;opacity:.5"></i>
+      <i class="closer__fleck" style="left:91%;top:50%;width:4px;height:4px;opacity:.55"></i>
+    </div>
+    <div class="closer__in">
+      <h2 data-reveal>Nem követjük a trendeket. Alakítjuk őket.</h2>
+      <button class="btn" data-back type="button" data-reveal data-d="1">Vissza a választáshoz</button>
+    </div>
   </section>
 
   <footer class="foot">
@@ -1174,12 +1325,12 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   <!-- MANIFESTO (felhuzodó kartya) -->
   <section class="wrap c-card" id="sec-philo">
     <div class="manifesto">
-      <span class="manifesto__tag" data-reveal="left">A hitvallásunk</span>
-      <h2 class="manifesto__h" data-reveal data-d="1">Nem <span class="swipe-mark">követjük</span><br>a trendeket.<br><span class="swipe-mark">Mi alakítjuk</span> őket.</h2>
+      <span class="manifesto__tag" data-reveal="left">Kiáltvány</span>
+      <h2 class="manifesto__h" data-reveal data-d="1">Nem kérsz<br><span class="swipe-mark">engedélyt.</span></h2>
       <p class="manifesto__chips" data-reveal data-d="2">
-        <span class="tape">9%</span>
-        <span class="tape">250ML</span>
-        <span class="tape">LIMITED</span>
+        <span class="tape">Pure Taste</span>
+        <span class="tape">Live Iconic</span>
+        <span class="tape">Not For Everyone</span>
       </p>
     </div>
   </section>
@@ -1189,14 +1340,19 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
 
   <!-- 9% BIG — structural spine (felhuzodó kartya) -->
   <section class="wrap flash-edge c-card" id="sec-9">
-    <div class="bignum">
-      <div class="bignum__n" data-reveal="left">9<sup>%</sup></div>
-      <ul data-reveal="right" data-d="1">
-        <li>9%-os alkoholtartalom, ami kiemelkedik a hagyományos alacsony alkoholtartalmú italok közül.</li>
-        <li>Intenzívebb fogyasztói élmény, magasabb prémium érzet.</li>
-        <li>Tökéletes választás fesztiválokra, beach clubokba és rooftop bárokba.</li>
-        <li>Egyetlen kortyban erőteljesebb élmény.</li>
-      </ul>
+    <div class="c9__bg" aria-hidden="true"><img src="media/brand-fireworks.png" alt=""></div>
+    <div class="c9">
+      <div class="c9__fig" aria-hidden="true"><span class="c9__9"><span class="c9__9base">9</span><span class="c9__9fill">9</span></span><span class="c9__pct">%</span></div>
+      <div class="c9__say">
+        <p class="c9__pulse" data-reveal><span class="cpulse" aria-hidden="true"></span> Fokozat: éles</p>
+        <h2 class="c9__h" data-reveal data-d="1">És bekapcsol az este.</h2>
+        <p class="c9__body" data-reveal data-d="2">Nem melegítő kör, nem finálé. Pont az a fokozat, ahol minden élesebb: a basszus, a fények, te.</p>
+        <p class="c9__chips" data-reveal data-d="3">
+          <span class="tape">9% alc.</span>
+          <span class="tape">Fesztivál</span>
+          <span class="tape">Rooftop</span>
+        </p>
+      </div>
     </div>
   </section>
 
@@ -1221,10 +1377,10 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
         </article>
         <article class="hpanel hpanel--end">
           <div class="hpanel__copy hpanel__copy--c">
-            <span class="hpanel__crown">✕ ICON ✕</span>
-            <span class="hpanel__no">9%</span>
-            <h3 class="hpanel__cta">Walking Pack</h3>
-            <p>Egy kézben. Mindenhol veled.</p>
+            <span class="hpanel__crown">✕ Icon ✕</span>
+            <span class="hpanel__big">9%</span>
+            <p class="hpanel__end-tag">Walking Pack. Egy kéz, egy este.</p>
+            <span class="cpulse" aria-hidden="true"></span>
           </div>
         </article>
       </div>
@@ -1232,12 +1388,13 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   </section>
 
   <!-- KEYART band (felhuzodó kartya) -->
-  <section class="band c-card">
+  <section class="band c-card band--scene">
     <div class="band__bg" data-parallax="0.1"><img src="media/brand-festival.png" alt="ICON Spirante fesztivál tömeg, jó vibe"></div>
     <div class="band__scrim"></div>
-    <div class="band__in" data-reveal>
-      <span class="eyebrow">A színtér</span>
-      <h2 style="font-family:var(--font-graf);margin-top:1rem" data-scramble>Itt születnek az ikonikus pillanatok.</h2>
+    <div class="band__in">
+      <span class="eyebrow" data-reveal>A színtér</span>
+      <hr class="scene__rule" data-reveal data-d="1" aria-hidden="true">
+      <h2 data-reveal data-d="2" data-scramble>Itt születnek az ikonikus pillanatok.</h2>
     </div>
   </section>
 
@@ -1273,7 +1430,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
 
   <!-- KIADASOK — overlapping collage (felhuzodó kartya) -->
   <section class="wrap c-card" id="sec-editions">
-    <span class="ed-stamp" data-reveal="left">Limitált kiadások — gyűjtsd a pillanatokat</span>
+    <span class="ed-stamp" data-reveal="left">Limitált kiadások, gyűjtsd a pillanatokat</span>
     <div class="collage">
       <figure class="poster" data-slide="left"><img src="media/brand-festival.png" alt="ICON Spirante Summer Festival Edition"><figcaption class="poster__cap">A fesztivál hangja<small>Summer Festival</small></figcaption></figure>
       <figure class="poster" data-slide="left"><img src="media/brand-pool.png" alt="ICON Spirante Beach Club Edition"><figcaption class="poster__cap">Good Times, Great Drinks<small>Beach Club</small></figcaption></figure>
@@ -1480,9 +1637,9 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
      NEZET-VALTAS (split -> termek oldal) + vissza
      ========================================================= */
   var BOTTLE_OPEN='polygon(0% 0%,100% 0%,100% 100%,0% 100%)';
-  var BOTTLE_INIT='polygon(0% 0%,100% 0%,100% 100%,0% 0%)';
+  var BOTTLE_INIT='polygon(0% 0%,55% 0%,46% 100%,0% 100%)';   /* egyezik a .half--bottle clip-path-tal (dolt vagas) */
   var CAN_OPEN='polygon(0% 0%,100% 0%,100% 100%,0% 100%)';
-  var CAN_INIT='polygon(0% 0%,100% 100%,100% 100%,0% 100%)';
+  var CAN_INIT='polygon(55% 0%,100% 0%,100% 100%,46% 100%)';   /* egyezik a .half--can clip-path-tal */
   var inited={bottle:false,can:false};
   var landingEl=document.querySelector('.landing');
 
@@ -1580,7 +1737,12 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
         roll.timeScale(v<0 ? -ts : ts);
       }});
     }
-    // (a giant 9 most stabil bold szam — nincs skew-torzitas)
+    // CR#2 — LIQUID-FILL: a 9-et pink->arany folyadek tolti fel scrollra (Aurora signature)
+    var c9fill=document.querySelector('.view--can .c9__9fill');
+    if(c9fill){
+      gsap.fromTo(c9fill,{clipPath:'inset(100% 0 0 0)'},{clipPath:'inset(0% 0 0 0)',ease:'none',
+        scrollTrigger:{trigger:'.view--can #sec-9',start:'top 82%',end:'center center',scrub:true,invalidateOnRefresh:true}});
+    }
     // STORY STRIP — pinned horizontal (desktop + no-reduce only)
     gsap.matchMedia().add('(min-width:769px) and (prefers-reduced-motion:no-preference)',function(){
       var rowEl=document.querySelector('.view--can .hstrip__row');
@@ -1642,33 +1804,19 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
 
   function enterView(which){
     if(!hasGSAP || reduce){ showView(which); return; }
-    var chosen = which==='bottle' ? '.half--bottle' : '.half--can';
-    var other  = which==='bottle' ? '.half--can' : '.half--bottle';
-    var openTo = which==='bottle' ? BOTTLE_OPEN : CAN_OPEN;
-
-    var chosenEl = document.querySelector(chosen);
-    var otherEl  = document.querySelector(other);
-
-    // (1) STACK: chosen half ABOVE the other for the whole reveal — this is the core fix.
-    gsap.set(chosenEl,{zIndex:5, autoAlpha:1});
-    gsap.set(otherEl, {zIndex:1});
-    document.querySelectorAll('.half[data-enter]').forEach(function(h){ h.classList.remove('is-dim'); });
-    chosenEl.classList.add('is-entering');   // lock hover/idle transforms on the morphing half
-
-    var tl=gsap.timeline({onComplete:function(){
-      chosenEl.classList.remove('is-entering');
-      showView(which);
-    }});
-    // identical single-vertex morph + eases for BOTH directions (the clean one)
-    tl.to(chosen,{clipPath:openTo, duration:0.85, ease:'power3.inOut'},0)
-      .to(chosen+' .half__bg img',{scale:1.08, duration:1.0, ease:'power2.out'},0)
-      // the other half exits BENEATH the chosen — no longer occludes the reveal
-      .to(other,{xPercent:-12, yPercent:-12, autoAlpha:0, duration:0.55, ease:'power2.in'},0)
-      .to('.seam, .landing__center',{autoAlpha:0, duration:0.35},0)
-      .to(landingEl,{autoAlpha:0, duration:0.45, ease:'power2.in'},0.5);
-
-    // SAFETY NET (Build Lesson 5): the timeline is the only path that reveals the page.
-    // If it stalls (throttled/background tab) force the view so the user never sticks on the landing.
+    // MOBIL (<768) + DESKTOP: UGYANAZ a crossfade — a hero elore renderelve a chooser MOGE,
+    // a chooser fade-OUT. Nincs fel-tagulas (az okozta a mobil fekete-villanast a tagulo fel alatt).
+    // CROSSFADE (Aurora motion demo 2 -> David valasztotta): a hero ELORE renderelve a chooser MOGOTT (z-stack),
+    // a chooser-overlay fade-OUT, a hero-bg finom scale-settle. NINCS panel-width/clip anim (az volt a broken-frame oka).
+    var root=document.querySelector('.view--'+which);
+    document.body.classList.add('show-'+which);   // hero display:block, a fixed landing (z90) felette marad
+    gsap.set(landingEl,{zIndex:90});
+    var heroImg=root?root.querySelector('.hero__bg img'):null;
+    if(heroImg) gsap.fromTo(heroImg,{scale:1.03},{scale:1.0, duration:0.7, ease:'power2.out'});   // termek/bg beules 1.03->1.0
+    gsap.timeline({onComplete:function(){ showView(which); }})   // showView finalizal (hero-szoveg reveal, lenis, scrolltrigger)
+      .to('.seam, .landing__center',{autoAlpha:0, duration:0.35, ease:'power2.inOut'},0)
+      .to(landingEl,{autoAlpha:0, duration:0.4, ease:'power2.inOut'},0.05);   // chooser fade-OUT 1->0
+    // SAFETY NET (Build Lesson 5): ha a timeline elakad (throttled/hatter-tab), kenyszeritjuk a nezetet
     setTimeout(function(){ if(current!==which) showView(which); }, 1400);
   }
 
