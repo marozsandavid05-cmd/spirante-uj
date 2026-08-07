@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- JS-jelenlet jelzo: a rejtett-indulas + nezet-valtas CSS CSAK ezzel aktiv. No-JS -> minden tartalom latszik. -->
 <script>document.documentElement.className += ' js';</script>
-<title>ICON Spirante IX · Pure Taste. Iconic Moments.</title>
-<meta name="description" content="ICON Spirante IX prémium spritz. 750 ml Prestige üveg az esti elegancia, 250 ml Walking Pack a fesztivál energia. Pure Taste. Iconic Moments.">
+<title>ICON Spirante IX · Be your own ICON.</title>
+<meta name="description" content="Az ICON Spirante IX nem egyszerűen egy ital. Egy gondolat, egy érzés, egy pillanat. Be your own ICON. Your life is your story.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- above-fold chooser keyartok preload (LCP): avif elsokent, a bongeszo a tamogatott formatumot valasztja -->
 <link rel="preload" as="image" type="image/avif" href="media/keyart-750left-825.avif" fetchpriority="high">
 <link rel="preload" as="image" type="image/avif" href="media/keyart-can-1280.avif" fetchpriority="high">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Jost:wght@300;400;500;600&family=Pinyon+Script&family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Jost:wght@300;400;500;600&family=Pinyon+Script&family=Big+Shoulders:opsz,wght@10..72,100..900&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    ICON SPIRANTE IX — Split Underground
@@ -30,7 +30,9 @@
   --font-display:'Cinzel',Georgia,'Times New Roman',serif;   /* David valasztas (Aurora 750 tipo 2.kor): monumentalis romai kapitalis, HU-safe (Ő/Ű OK) */
   --font-body:'Jost',system-ui,sans-serif;
   --font-script:'Pinyon Script',cursive;
-  --font-graf:'Rubik Wet Paint',system-ui,cursive;
+  /* David 08-05: Rubik Wet Paint ("fagyi" drip) helyett Big Shoulders — kondenzalt street-poszter
+     kapitalis, a festett lettering a KEPEKEN el, a UI-font tiszta es kemeny. HU ekezetek OK. */
+  --font-graf:'Big Shoulders','Arial Narrow',system-ui,sans-serif;
   --pad:clamp(1.4rem,5vw,6rem);
   --maxw:1280px;
   --ease:cubic-bezier(.16,1,.3,1);
@@ -171,16 +173,25 @@ body.show-bottle::after, body.show-can::after{
 .half__content{position:absolute;z-index:2;display:flex;flex-direction:column;gap:.7rem;max-width:min(80vw,30rem)}
 .half__title{line-height:.95}
 .half__line{color:var(--muted);font-size:.95rem;letter-spacing:.02em}
-.half__cta{font-family:var(--font-body);font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-bright);margin-top:.5rem;display:inline-flex;align-items:center;gap:.6rem}
-.half__cta::after{content:'';width:2.4rem;height:1px;background:var(--gold-bright);transition:width .4s var(--ease)}
-.half:hover .half__cta::after{width:3.6rem}
+/* SZLOGENEK (David referencia 07-13): KEZZEL FESTETT arany brush-lettering KEPKENT (Higgsfield gen,
+   brand-konstans: arany #D9A441/#B07C2E/#7A5320, drip). Nem renderelt font — a fontos headline-ok kepek. */
+.slogan__img{display:block;height:auto;filter:drop-shadow(0 10px 28px rgba(0,0,0,.6))}
+.half--bottle .slogan__img{width:min(27vw,430px)}
+.half--can .slogan__img{width:min(26vw,420px);margin-left:auto}
+/* belepo affordancia: NEM szoveg (a feleken csak a brand-szovegek elhetnek) — arany vonal + nyil-SVG */
+.half__cta{color:var(--gold-bright);margin-top:.5rem;display:inline-flex;align-items:center;gap:.6rem}
+.half__cta::before{content:'';width:2.4rem;height:1px;background:var(--gold-bright);transition:width .4s var(--ease)}
+.half:hover .half__cta::before{width:3.6rem}
+.half__cta svg{width:1.05rem;height:1.05rem;stroke:var(--gold-bright);fill:none;stroke-width:1.6;
+  filter:drop-shadow(0 1px 6px rgba(8,7,6,.7));transition:transform .4s var(--ease)}
+.half:hover .half__cta svg{transform:translateX(4px)}
 
 /* STEP 1 — TRANSITION FIX: stacking order is the root cause. The chosen half must paint ABOVE the other while it morphs. */
 .half--can{z-index:1}
 .half--bottle{z-index:2}
 .half.is-entering{z-index:5}
 .half.is-entering .half__bg img{transition:none}   /* GSAP owns the scale during entry, no CSS fight */
-.half.is-entering .half__cta::after{width:2.4rem}   /* freeze the hover underline mid-morph */
+.half.is-entering .half__cta::before{width:2.4rem}   /* freeze the hover underline mid-morph */
 
 /* Uveges fel: jobb-fent (atlo folott) */
 /* Aurora ref: dolt kozel-fuggoleges vagas (top 55% -> bottom 41%), NEM sarok-haromszog -> ember+termek MINDKET felen elfer */
@@ -197,8 +208,7 @@ body.show-bottle::after, body.show-can::after{
   background:radial-gradient(240px 240px at var(--gx,26%) var(--gy,62%),rgba(231,181,63,.5),rgba(231,181,63,.1) 45%,transparent 70%);
   mix-blend-mode:soft-light}
 .half--bottle:hover .half__glow{opacity:1}
-.half--bottle .half__content{bottom:clamp(4.5rem,14vh,9rem);left:var(--pad);text-align:left;align-items:flex-start;z-index:3}
-.half--bottle .half__title{font-family:var(--font-display);font-style:normal;font-weight:500;font-size:clamp(2.6rem,6.5vw,5.6rem)}
+.half--bottle .half__content{bottom:clamp(2.6rem,6.5vh,4.5rem);left:var(--pad);text-align:left;align-items:flex-start;z-index:3}
 
 /* Dobozos fel: jobb-fent (atlo folott) — clip degeneralt csucs: TISZTA atlos wipe nyitaskor */
 .half--can{clip-path:polygon(55% 0,100% 0,100% 100%,46% 100%)}
@@ -215,17 +225,12 @@ body.show-bottle::after, body.show-can::after{
     radial-gradient(34% 42% at 42% 6%,rgba(214,46,255,.4),transparent 70%)}
 .js .half--can .half__party{opacity:.34;animation:party 9s ease-in-out infinite alternate}
 @keyframes party{0%{filter:hue-rotate(-12deg);transform:translateY(0) scale(1)}100%{filter:hue-rotate(18deg);transform:translateY(-2.5%) scale(1.06)}}
-.half--can .half__content{top:clamp(5.5rem,16vh,11rem);right:var(--pad);text-align:right;align-items:flex-end;z-index:3}
-.half--can .half__title{font-family:var(--font-graf);font-size:clamp(2.4rem,6vw,5rem);color:var(--ink);letter-spacing:.01em;line-height:1.02}
-.half--can .half__9{font-family:var(--font-display);font-weight:600;color:var(--gold-bright);font-size:clamp(1.6rem,3vw,2.4rem);line-height:1}
+.half--can .half__content{top:clamp(3.6rem,8vh,6rem);right:var(--pad);text-align:right;align-items:flex-end;z-index:3}
+/* David 07-30: a feleken CSAK a ket festett arany szlogen-kep el — alattuk semmilyen szoveg */
 
-/* product-led chooser: darken the scene a touch so the products read first */
-/* minimalis globalis korrekcio (a kontrasztot a lokalis scrimek adjak, nem globalis sotetites) */
-.half--bottle .half__bg img{filter:brightness(.98) saturate(.96)}
-.half--can .half__bg img{filter:brightness(.98)}
-/* dimmeles a masik felen hoverkor (JS adja a .is-dim-et) */
-.half.is-dim .half__scrim{opacity:.55}
-.half.is-dim .half__bg img{filter:saturate(.45) brightness(.55)}
+/* VILAGOS chooser (David 07-30): NINCS globalis sotetites, NINCS hover-dim a masik felen.
+   A kontrasztot CSAK a lokalis (szoveg mogotti) scrimek adjak. */
+.half--bottle .half__bg img,.half--can .half__bg img{filter:none}
 .half:hover .half__bg img{transform:scale(1.05)}
 
 /* atlos arany varrat — SVG, pontos sarok-sarok */
@@ -233,14 +238,16 @@ body.show-bottle::after, body.show-can::after{
 
 /* kozep felirat */
 .landing__center{position:absolute;z-index:4;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;width:max-content;max-width:90vw}
-.landing__brand{font-family:var(--font-body);letter-spacing:.5em;font-size:.7rem;text-transform:uppercase;color:var(--ink);opacity:.85}
-.landing__prompt{font-family:var(--font-display);font-style:normal;font-size:clamp(1.1rem,2.2vw,1.7rem);color:var(--ink);margin-top:.5rem}
-.landing__hint{font-family:var(--font-body);letter-spacing:.26em;font-size:.62rem;text-transform:uppercase;color:var(--muted);margin-top:1.1rem}
+.landing__brand{font-family:var(--font-body);letter-spacing:.5em;font-size:.7rem;text-transform:uppercase;color:var(--ink);opacity:.92;
+  text-shadow:0 1px 14px rgba(8,7,6,.85),0 0 2px rgba(8,7,6,.6)}
+/* kozep tagline a brand-filozofiabol (docx): "Be your own ICON. Your life is your story." */
+.landing__tag{font-family:var(--font-display);font-weight:500;font-size:clamp(1.05rem,2vw,1.6rem);color:var(--ink);
+  margin-top:.7rem;line-height:1.3;text-shadow:0 2px 22px rgba(8,7,6,.85),0 0 3px rgba(8,7,6,.6)}
+.landing__tag b{font-weight:600;color:var(--gold-bright)}
 .landing__divider{width:1px;height:2.4rem;margin:.8rem auto 0;background:linear-gradient(var(--gold-bright),transparent)}
 /* ============ B BUILD — TABLET (768-1023): diagonal marad, headline-skala le, crop-recheck ============ */
 @media(min-width:768px) and (max-width:1023px){
-  .half--bottle .half__title{font-size:clamp(2.4rem,6vw,4.4rem)}
-  .half--can .half__title{font-size:clamp(2.2rem,5.6vw,4rem)}
+  .half--bottle .slogan__img,.half--can .slogan__img{width:min(30vw,340px)}
   .half--bottle .half__bg{transform:none}   /* fel-panel cover, nincs nagyitas (elesseg) */
   .half--can .half__bg{transform:none}
 }
@@ -255,26 +262,23 @@ body.show-bottle::after, body.show-can::after{
   .half--bottle{top:0!important;bottom:50%!important;border-bottom:1px solid rgba(231,181,63,.5)}
   .half--can{top:50%!important;bottom:0!important}
   .half__bg{transform:none!important;inset:0!important;width:auto!important}   /* mobilon full-width stacked (a desktop fel-panel width feloldva) */
-  /* recrop a stack-hez: alany + termek frame-ben, tomorebb kivagas */
+  /* recrop a stack-hez: alany + termek frame-ben, tomorebb kivagas. VILAGOS: nincs brightness-vagas. */
   /* bottle: a palack a hf-forras kozep-jobb also reszen -> object-position kozep-jobbra + kicsit le, hogy a palack + ferfi+parduc a kartyaba essen (Aurora comp-note) */
-  .half--bottle .half__bg img{object-position:50% 46%;filter:brightness(.9) saturate(.96)}
-  .half--can .half__bg img{object-position:52% 30%;filter:brightness(.92)}
+  .half--bottle .half__bg img{object-position:50% 46%;filter:none}
+  .half--can .half__bg img{object-position:52% 30%;filter:none}
   .half__party{display:none}
   .half--bottle .half__glow{display:none}
-  /* LOKALIS scrim a szoveg mogott, nem globalis sotetites. bottle: FONT scrim (szoveg felul, a baked ICON Spirante IX lockup ALUL marad, nem utkozik). can: LENT. */
-  .half--bottle .half__scrim{background:linear-gradient(180deg,rgba(10,9,8,.93) 0%,rgba(10,9,8,.55) 34%,rgba(10,9,8,0) 64%)!important;opacity:1}
-  .half--can .half__scrim{background:linear-gradient(0deg,rgba(10,9,8,.92) 0%,rgba(10,9,8,.55) 32%,rgba(10,9,8,0) 62%)!important;opacity:1}
-  /* 2-osztalyos szelektor, hogy a can jobb-igazitasat (line 209) is felulirja */
+  /* LOKALIS scrim CSAK a szoveg mogott (tomorebb, nem globalis sotetites). bottle: FONT. can: LENT. */
+  .half--bottle .half__scrim{background:linear-gradient(180deg,rgba(10,9,8,.86) 0%,rgba(10,9,8,.44) 30%,rgba(10,9,8,0) 55%)!important;opacity:1}
+  .half--can .half__scrim{background:linear-gradient(0deg,rgba(10,9,8,.86) 0%,rgba(10,9,8,.44) 28%,rgba(10,9,8,0) 52%)!important;opacity:1}
+  /* 2-osztalyos szelektor, hogy a can jobb-igazitasat is felulirja */
   .half--bottle .half__content,.half--can .half__content{position:absolute;left:clamp(1.2rem,5vw,1.8rem);right:clamp(1.2rem,5vw,1.8rem);
-    max-width:none;text-align:left;align-items:flex-start;gap:.45rem}
+    max-width:none;text-align:left;align-items:flex-start;gap:.5rem}
   .half--bottle .half__content{top:clamp(1.3rem,4vh,2rem);bottom:auto}   /* bal-FONT, a baked lockup fole */
   .half--can .half__content{bottom:clamp(1.4rem,4vh,2.2rem);top:auto}    /* bal-ALUL */
-  .half--bottle .half__title{font-size:clamp(2.1rem,10vw,3rem)}
-  .half--can .half__title{font-size:clamp(2rem,9vw,2.8rem);color:var(--ink)}
-  .half__line{font-size:.84rem}
-  .half--can .half__9{font-size:1.5rem;order:-1}
-  .half__cta::after{width:2.4rem}
-  .half .eyebrow{letter-spacing:.16em}
+  .half--bottle .slogan__img,.half--can .slogan__img{width:min(52vw,240px)}
+  .half--can .slogan__img{margin-left:0}
+  .half__cta::before{width:2.4rem}
 }
 
 /* landing belepo (CSS, .js prefix) */
@@ -459,10 +463,11 @@ body.show-bottle::after, body.show-can::after{
 .duo__media img{width:100%;height:100%;object-fit:cover}
 @media(max-width:780px){.duo,.duo--rev{grid-template-columns:1fr;gap:2rem}.duo--rev .duo__media{order:-1}}
 
-/* szekcio cim */
-.shead{max-width:60ch}
-.shead h2{font-size:var(--step-3)}
-.shead p{margin-top:1.1rem;color:var(--muted);max-width:54ch}
+/* szekcio cim — v4 (David 08-05): egyszeru, nyugodt fejlec. A cim max 2-3 sorban,
+   a lead simán alatta — semmi behuzas-trukk. A stilust a serif+script paros adja (philo-minta). */
+.shead{max-width:none}
+.shead h2{font-size:var(--step-3);max-width:none;text-wrap:balance;line-height:1.14}
+.shead p{margin-top:1.5rem;color:var(--muted);max-width:52ch}
 
 /* SERVE / FLAVOR ROWS (lista, nem kartyaracs) */
 .rows{margin-top:2.6rem;border-top:1px solid var(--line)}
@@ -471,6 +476,11 @@ body.show-bottle::after, body.show-can::after{
 .row__name{font-family:var(--font-display);font-size:clamp(1.5rem,2.6vw,2.2rem)}
 .row__name small{display:block;font-family:var(--font-body);font-size:.78rem;letter-spacing:.04em;color:var(--muted);margin-top:.35rem;max-width:46ch}
 .row__tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+/* elvek teljes szelessegben, ket hasab (David 08-05) */
+.rows--wide{margin-top:clamp(2.8rem,7vh,5rem);display:grid;grid-template-columns:1fr 1fr;
+  column-gap:clamp(2.5rem,6vw,6.5rem)}
+.rows--wide .row__name{font-size:clamp(1.35rem,1.9vw,1.85rem)}
+@media(max-width:900px){.rows--wide{display:block}}
 
 /* 9% nagy szam blokk */
 .bignum{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.5rem,5vw,4rem);align-items:center}
@@ -536,6 +546,7 @@ body.show-bottle::after, body.show-can::after{
 /* CLOSER + BACK */
 .closer{text-align:center}
 .closer h2{font-size:clamp(2.2rem,6vw,4.6rem);max-width:18ch;margin-inline:auto}
+.closer__p{color:var(--ink);opacity:.82;margin:1.4rem auto 0;max-width:44ch;font-size:clamp(1rem,1.4vw,1.15rem);line-height:1.6}
 /* ZARO ATMOSZFERA (Aurora 750-zaro-atmoszfera spec): tiszta hibiscus-serve kep sotetitve+arany tonus+blur, kozep-scrim a cim olvashatosagaert, vignetta, arany szikra-flekkek, grain. A szoveg marad a hos, nulla generikus gradiens. Csak a 750 (bottle) zaron. */
 .closer--atmo{position:relative;min-height:74vh;display:grid;place-items:center;overflow:hidden;padding-block:clamp(4rem,10vw,8rem)}
 .closer--atmo .closer__bg{position:absolute;inset:0;z-index:0;pointer-events:none}
@@ -574,23 +585,29 @@ body.show-bottle::after, body.show-can::after{
 .view--bottle .tl__node::before{content:'';position:absolute;left:50%;top:-.7rem;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:var(--gold-bright)}
 /* content clears the spine */
 .view--bottle section.wrap{padding-left:max(var(--pad),calc(var(--tl-x,clamp(1.4rem,4vw,3.2rem)) + clamp(2.5rem,7vw,6rem)))}
+/* mobilon a spine rejtve (b-card layout) -> a nagy bal padding zsufoltta tette a szoveget, vissza normalra */
+@media(max-width:780px){.view--bottle section.wrap{padding-left:var(--pad)}}
 
 /* 6.2 hero metadata rail (asymmetry signal) */
 .view--bottle .hero__inner{display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem}
 .view--bottle .hero__rail{writing-mode:vertical-rl;transform:rotate(180deg);align-self:end;font-family:var(--font-body);font-size:.62rem;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);padding-bottom:.5rem}
+@media(max-width:768px){.view--bottle .hero__rail{display:none}} /* mobilon a szoveg fole logna */
 
 /* hero gold dust canvas (atmosphere, self-rAF) */
 .view--bottle .hero .dust{position:absolute;inset:0;z-index:1;pointer-events:none}
 
 /* 6.3 philosophy off-grid, drop-cap, image bleeding right */
-.view--bottle .philo{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+/* David 08-05 (valasztott opcio): a szoveg-blokk a plakat fuggoleges KOZEPEHEZ zar */
+.view--bottle .philo{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
 .view--bottle .philo__text{grid-column:1 / 7}
-.view--bottle .philo__media{grid-column:8 / 13;aspect-ratio:3/4.4;margin-top:clamp(3rem,10vh,9rem);margin-right:calc(var(--pad) * -1);overflow:clip;border-radius:4px 0 0 4px;position:relative}
+/* uj keyart-poszter (festett arany kerettel): NEM full-bleed — egeszben, kereten belul latszik (David 07-30) */
+.view--bottle .philo__media{grid-column:8 / 13;aspect-ratio:1400/2104;overflow:clip;border-radius:4px;position:relative}
 .view--bottle .philo__media img{width:100%;height:100%;object-fit:cover}
 .view--bottle .dropcap::first-letter{float:left;font-family:var(--font-display);font-style:normal;font-size:clamp(3.4rem,7vw,5.6rem);line-height:.74;padding:.35rem .6rem 0 0;color:var(--gold-bright)}
 @media(max-width:780px){
   .view--bottle .philo__text{grid-column:1/13}
-  .view--bottle .philo__media{grid-column:1/13;margin:0;aspect-ratio:4/5;border-radius:4px}
+  /* nativ arany mobilon is — a plakat sosem vagodik (David) */
+  .view--bottle .philo__media{grid-column:1/13;margin:0;aspect-ratio:1400/2104;border-radius:4px}
 }
 
 /* 6.4 serving ritual — ITEM 3: aszimmetrikus, valtakozo-horgonyu kartyak + IntersectionObserver reveal */
@@ -598,9 +615,11 @@ body.show-bottle::after, body.show-can::after{
 .view--bottle .ritual__cards{list-style:none;margin:2rem 0 0;padding:0;display:flex;flex-direction:column;gap:clamp(4vh,7vh,9vh)}
 /* kep + szoveg PARBAN, valtakozo oldal + STICKY-STACK (starter-kit A8): a kartyak
    egymasba csusznak gorgetesre. Opálos bg kell, hogy a kovetkezo eltakarja az elozot. */
+/* OPAK kartya (David 07-30 fix): az arany tinta egy TELJESEN opak alapra festve —
+   a kovetkezo kartya igy hezagmentesen ELTAKARJA az elozot, nincs atderenges/szellemkep. */
 .view--bottle .ritual__card{position:sticky;top:13vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
-  gap:clamp(1.4rem,3.5vw,3rem);align-items:stretch;will-change:transform;
-  background:linear-gradient(180deg, rgba(231,181,63,.07), rgba(19,16,12,1) 62%);
+  gap:clamp(1.4rem,3.5vw,3rem);align-items:stretch;
+  background:linear-gradient(180deg, rgba(231,181,63,.07), rgba(231,181,63,0) 62%), #13100C;
   border:1px solid rgba(231,181,63,.18);border-radius:16px;overflow:hidden;
   box-shadow:0 34px 80px rgba(0,0,0,.6)}
 .view--bottle .ritual__card:nth-child(even) .ritual__media{order:2}   /* paros: kep jobbra */
@@ -619,8 +638,16 @@ html:not(.js) .view--bottle .ritual__card{opacity:1;transform:none}
 .view--bottle .ritual__card.r-from-c{transform:translateY(7%);opacity:0}
 .view--bottle .ritual__card.is-in{opacity:1!important;transform:none!important;
   transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+/* MOBIL (David 07-30 fix): a sticky-stack kikapcsol (normal gorgetes, semmi atfedes),
+   a kartya EGY oszlopra bomlik (kep felul, szoveg alatta) -> nem folyik ossze. */
 @media(max-width:780px){
   .view--bottle .ritual__card,.r-anchor-l,.r-anchor-r,.r-anchor-c{align-self:stretch;max-width:none}
+  .view--bottle .ritual__cards{gap:clamp(1.6rem,4vh,2.6rem)}
+  .view--bottle .ritual__card{position:relative;top:auto;grid-template-columns:1fr}
+  .view--bottle .ritual__card:nth-child(even) .ritual__media{order:0}
+  .view--bottle .ritual__media{min-height:0;aspect-ratio:16/10;max-height:34vh}
+  .view--bottle .ritual__body{padding:1.3rem 1.2rem 1.6rem}
+  .view--bottle .ritual__card p{max-width:none;font-size:1rem}
 }
 @media (prefers-reduced-motion:reduce){
   .view--bottle .ritual__card{position:relative;top:auto;opacity:1!important;transform:none!important}
@@ -635,10 +662,27 @@ html:not(.js) .view--bottle .ritual__card{opacity:1;transform:none}
 .view--bottle .ed__body{grid-column:9 / 13;align-self:end}
 .view--bottle .ed:nth-child(even) .ed__body{grid-column:1 / 5;align-self:start;order:1}
 .view--bottle .ed__media img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease-slow)}
+/* crop-fix v2 (David 08-05: "teljesen ki van vagva — legyen kisebb de egesz"):
+   MINDHAROM kiadas-kep NATIV aranyban, vagatlanul, kisebb kozepre zart keretben */
+.view--bottle .ed:nth-child(1) .ed__media{grid-column:2/7;aspect-ratio:1086/1448;align-self:center}
+.view--bottle .ed:nth-child(2) .ed__media{grid-column:7/12;aspect-ratio:1023/1537;align-self:center}
+/* uj No Rules plakat: nativ arany = vagatlan, de KISEBB meretben (David 08-05: "kisebb, nem levagva") */
+.view--bottle .ed:nth-child(3) .ed__media{grid-column:2/7;aspect-ratio:1400/1866;align-self:center}
+/* ed-szoveghasab gazdagitasa (David 08-05: "keves a szoveg" — tobb Word-mondat + sorszam-tipo) */
+.view--bottle .ed__body{align-self:center}
+.ed__num{display:block;font-family:var(--font-display);color:var(--gold-bright);font-size:1.05rem;
+  letter-spacing:.14em;margin-bottom:1rem;position:relative;padding-bottom:.8rem}
+.ed__num::after{content:'';position:absolute;left:0;bottom:0;width:2.6rem;height:1px;background:var(--gold)}
+.ed__more{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted)}
+/* szalon-keyart NATIV aranyban minden merteken — sosem vagodik (David 08-05) */
+.view--bottle #sec-flavor .duo__media{aspect-ratio:1400/1866}
 .view--bottle .ed:hover .ed__media img{transform:scale(1.04)}
 @media(max-width:780px){
   .view--bottle .ed,.view--bottle .ed:nth-child(even){grid-template-columns:1fr}
   .view--bottle .ed__media,.view--bottle .ed:nth-child(even) .ed__media{grid-column:1/13;order:0;aspect-ratio:4/3}
+  .view--bottle .ed:nth-child(1) .ed__media{grid-column:1/13;aspect-ratio:1086/1448}
+  .view--bottle .ed:nth-child(2) .ed__media{grid-column:1/13;aspect-ratio:1023/1537}
+  .view--bottle .ed:nth-child(3) .ed__media{grid-column:1/13;aspect-ratio:1400/1866}
   .view--bottle .ed__body,.view--bottle .ed:nth-child(even) .ed__body{grid-column:1/13}
 }
 @media(max-width:640px){
@@ -696,13 +740,27 @@ html:not(.js) .view--bottle .goldline__p,html:not(.js) .view--bottle .goldline__
 
 /* 7.5 STORY STRIP — pinned horizontal (signature) */
 .view--can .hstrip{position:relative}
-.view--can .hstrip__vp{overflow:clip}
-.view--can .hstrip__row{display:flex;gap:2vw;width:max-content;padding:0 var(--pad-can);align-items:center}
+/* default: kezzel gorgetheto (robusztus: gsap/CDN-hiba eseten is elerheto minden panel);
+   a pin-elt allapot JS-bol kapja a clip-et (.hstrip--pinned) */
+.view--can .hstrip__vp{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.view--can .hstrip--pinned .hstrip__vp{overflow:clip}
+.view--can .hstrip__row{display:flex;gap:2vw;width:max-content;margin-inline:auto;padding:0 var(--pad-can);align-items:center}
 .view--can .hpanel{flex:0 0 min(78vw,640px);height:78vh;position:relative;display:grid;grid-template-rows:1fr auto;background:var(--paper-2);border-radius:6px;overflow:clip;transform:rotate(calc(var(--tilt) * -1))}
 .view--can .hpanel:nth-child(even){transform:rotate(var(--tilt))}
 .view--can .hpanel__no{position:absolute;top:1rem;left:1.1rem;z-index:3;font-family:var(--font-display);font-weight:600;font-size:clamp(2rem,4vw,3.4rem);color:var(--gold-bright)}
-.view--can .hpanel__media{position:relative;overflow:clip}
+.view--can .hpanel__media{position:relative;overflow:clip;min-height:0}   /* grid 1fr sor TENYLEG vagja a kepet (min-height:auto blowout fix) */
 .view--can .hpanel__media img{width:100%;height:100%;object-fit:cover;will-change:transform}
+/* crop-fix (David 07-30): a par arca a kep also savjaban van — a crop lejjebb horgonyozva, fej+test latszik */
+.view--can .hpanel:nth-child(3) .hpanel__media img{object-position:50% 32%} /* festett felso felirat latszodjon */
+/* hpanel--p: PLAKAT-panel (David 08-05, "csak a kep legyen") — a media-doboz aranya = a kep
+   NATIV aranya, igy a kep hezagtalanul tolti ki: se vagas, se fekete matt korulotte.
+   A panel magassaga a kepbol jon (height:auto), a sorszam+szoveg sav alatta. */
+.view--can .hpanel--p{height:auto;flex:0 0 min(78vw,calc((78vh - 8.5rem) * .6667));grid-template-rows:auto auto}
+.view--can .hpanel--p .hpanel__media img{object-fit:cover}
+.view--can .hpanel:nth-child(1).hpanel--p .hpanel__media{aspect-ratio:1400/2100}
+.view--can .hpanel:nth-child(2).hpanel--p .hpanel__media{aspect-ratio:1400/2104}
+.view--can .hpanel--p .hpanel__copy{background:var(--paper-2);padding:1rem 1.2rem 1.3rem}
+.view--can .hpanel--p .hpanel__no{position:static;display:block;font-size:1.3rem;margin-bottom:.35rem}
 .view--can .hpanel__copy{padding:1.2rem 1.4rem 1.6rem;background:linear-gradient(0deg,var(--paper) 30%,transparent)}
 .view--can .hpanel__copy h3{font-family:var(--font-graf);font-size:clamp(1.6rem,3vw,2.6rem)}
 .view--can .hpanel__copy p{color:var(--muted);margin-top:.3rem;max-width:34ch}
@@ -731,14 +789,26 @@ html:not(.js) .view--bottle .goldline__p,html:not(.js) .view--bottle .goldline__
 .view--can .band--scene h2{font-family:var(--font-graf);color:#FFFFFF;text-align:left;
   font-size:clamp(2rem,5.4vw,4.2rem);line-height:1.05;max-width:20ch;
   text-shadow:0 3px 30px rgba(0,0,0,.82),0 1px 2px rgba(0,0,0,.7)}
-@media(max-width:768px),(prefers-reduced-motion:reduce){
+/* mobil: swipe-elheto sav, nagy panelek */
+@media(max-width:768px){
   .view--can .hstrip__vp{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .view--can .hpanel{flex-basis:86vw;height:64vh;transform:none}
+  .view--can .hpanel--p{flex-basis:min(86vw,calc((64vh - 7.5rem) * .6667));height:auto}
+}
+/* reduced motion DESKTOPON (David gepe): NINCS pin — desktop panelmeretek maradnak,
+   a sav kezzel gorgetheto, es ha rovidebb a viewportnal, kozepre zar (nincs holt fekete) */
+@media(prefers-reduced-motion:reduce){
+  .view--can .hstrip__vp{overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
 
 /* 7.6 serve ticket-stub sticky-stack */
 .view--can .stubs{display:flex;flex-direction:column;gap:1.2rem}
 .view--can .stub{position:sticky;top:14vh;background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:clamp(1.4rem,4vw,2.6rem);display:grid;grid-template-columns:auto 1fr auto;gap:1.4rem;align-items:center;box-shadow:0 -10px 30px rgba(0,0,0,.45)}
+/* MOBIL (David 07-30): sticky ki (nincs egymasra csuszas), tag a nev ala -> nem folyik ossze */
+@media(max-width:768px){
+  .view--can .stub{position:relative;top:auto;grid-template-columns:auto 1fr;gap:1rem 1.1rem}
+  .view--can .stub__tag{grid-column:2;white-space:normal}
+}
 .view--can .stub__no{font-family:var(--font-display);color:var(--gold-bright);font-size:1.4rem}
 .view--can .stub__name{font-family:var(--font-graf);font-size:clamp(1.4rem,2.6vw,2.1rem)}
 .view--can .stub__name small{display:block;font-family:var(--font-body);font-size:.78rem;letter-spacing:.02em;color:var(--muted);margin-top:.4rem;max-width:46ch}
@@ -749,6 +819,15 @@ html:not(.js) .view--bottle .goldline__p,html:not(.js) .view--bottle .goldline__
 .view--can .dwipe__base,.view--can .dwipe__over{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:clip}
 .view--can .dwipe__base{background:transparent}
 .view--can .dwipe__over{background:#140a1e;margin-top:-100vh;z-index:2;clip-path:inset(100% 0 0 0);will-change:clip-path}
+/* MOBIL (David 08-05): nincs pin-wipe — ket kompakt, egymas alatti blokk, minden szoveg latszik */
+@media(max-width:768px){
+  .view--can .dwipe{height:auto}
+  .view--can .dwipe__base,.view--can .dwipe__over{position:relative;height:56vh;margin-top:0}
+  .view--can .dwipe__over{clip-path:none!important}
+  .view--can .dwipe__graf{opacity:1!important;transform:none!important}
+  .view--can .dwipe__base img{opacity:.55;filter:saturate(1.1) brightness(.72)}
+  .view--can .dwipe__over img{opacity:.5;filter:saturate(1.15) brightness(.68)}
+}
 .view--can .dwipe__over .script{font-size:clamp(2.4rem,8vw,5rem)}
 
 /* 7.8 editions overlapping collage */
@@ -756,6 +835,9 @@ html:not(.js) .view--bottle .goldline__p,html:not(.js) .view--bottle .goldline__
 .view--can .poster{position:relative;overflow:clip;border-radius:4px;box-shadow:0 20px 50px rgba(0,0,0,.5)}
 .view--can .poster img{width:100%;height:100%;object-fit:cover}
 .view--can .poster:nth-child(1){grid-column:1 / 7;grid-row:1 / 6;transform:rotate(var(--tilt));z-index:2}
+/* embléma-poszter: fekete muven fekete karton + contain = a TELJES grafika latszik, nulla vagas */
+.view--can .poster:nth-child(1){background:#000}
+.view--can .poster:nth-child(1) img{object-fit:contain}
 .view--can .poster:nth-child(2){grid-column:6 / 12;grid-row:3 / 9;transform:rotate(calc(var(--tilt)*-1));z-index:3}
 .view--can .poster:nth-child(3){grid-column:2 / 9;grid-row:7 / 13;transform:rotate(calc(var(--tilt)*.6));z-index:1}
 .view--can .poster__cap{position:absolute;left:.8rem;bottom:.8rem;z-index:4;font-family:var(--font-graf);color:var(--ink);text-shadow:0 2px 10px #000}
@@ -780,11 +862,20 @@ html:not(.js) .view--bottle .goldline__p,html:not(.js) .view--bottle .goldline__
 .view--can .eyebrow{color:var(--pink)}
 .view--can .manifesto__tag{color:var(--pink);border-left-color:var(--pink)}
 /* ITEM 7: a lapos rozsaszin szekcio-hatter ELTAVOLITVA (David panasza) — az energia mozgasbol jon */
-/* MANIFESTO — teljes szelessegu graffiti tipo-robbanas (no sidebar, no body) */
-.view--can .manifesto{display:block;text-align:left}
+/* MANIFESTO — tipo BALRA + skatepark-plakat JOBBRA, a plakat VAGATLANUL (nativ arany) (David 08-05) */
+.view--can .manifesto{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);
+  column-gap:clamp(2rem,5vw,5rem);align-items:center;text-align:left}
+.view--can .manifesto>:not(.manifesto__fig){grid-column:1}
+.view--can .manifesto__fig{grid-column:2;grid-row:1/6;margin:0;aspect-ratio:1400/1866;
+  overflow:clip;border-radius:6px;transform:rotate(var(--tilt));box-shadow:0 22px 54px rgba(0,0,0,.5)}
+.view--can .manifesto__fig img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:900px){
+  .view--can .manifesto{display:block}
+  .view--can .manifesto__fig{margin-top:2.2rem;transform:rotate(calc(var(--tilt)*.6))}
+}
 .view--can .manifesto__tag{display:inline-block;margin-bottom:1.3rem;transform:rotate(var(--tilt))}
 /* CR#1 KIÁLTVÁNY: fehér uppercase graffiti, clamp hogy 1920/1440/1024/375-ön BEFÉRJEN (max 2 sor, 0 túlcsordulás) */
-.view--can .manifesto__h{grid-column:auto;font-family:var(--font-graf);font-size:clamp(2.4rem,8.2vw,6.6rem);line-height:1.0;letter-spacing:.004em;color:#FFFFFF;text-transform:uppercase;max-width:14ch}
+.view--can .manifesto__h{grid-column:1;font-family:var(--font-graf);font-weight:800;font-size:clamp(2.4rem,5.8vw,5.2rem);line-height:1.02;letter-spacing:.02em;color:#FFFFFF;text-transform:uppercase;max-width:16ch}
 .view--can .manifesto__h em{color:#FFFFFF;font-style:normal}
 .view--can .manifesto__h .swipe-mark{color:#FFFFFF}
 /* ITEM 7 — fesztival kezeles: festek-sopres alahuzas (signature gesztus) kulcsszavakra */
@@ -876,11 +967,19 @@ html:not(.js) .c9__9fill{clip-path:inset(0 0 0 0)}
 /* NAV — can identitas amikor a 250 aktiv: graffiti brand + kemeny pink valto-gomb */
 body.show-can .nav__brand{font-family:var(--font-graf);font-style:normal}
 body.show-can .nav__brand b{color:var(--pink);font-family:var(--font-graf)}
+/* Big Shoulders hangolas (David 08-05): kover 800-as poszter-caps sulyu minden graf-elemen —
+   a variable font default 400-a itt vekony lenne */
+.view--can .marquee__in span,.view--can .hero__title,.view--can .hero__cantag,
+.view--can .hpanel__copy h3,.view--can .hpanel__crown,.view--can .hpanel__big,
+.view--can .band--scene h2,.view--can .stub__name,.view--can .poster__cap,
+.view--can .c9__h,.view--can .ed-stamp,.view--can .closer h2,.view--can .dwipe__graf,
+.view--can .foot__brand,body.show-can .nav__brand,.view--can #sec-serve .shead h2{
+  font-weight:800;font-optical-sizing:auto}
 body.show-can .nav__switch{border-radius:0;border-color:var(--pink);color:var(--pink)}
 body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
 /* DIAGONAL WIPE — fesztival reveal (volt: ures, David panasza) */
 .view--can .dwipe__base img,.view--can .dwipe__over img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.view--can .dwipe__base img{opacity:.42;filter:saturate(1.1) brightness(.6)}
+.view--can .dwipe__base img{opacity:.42;filter:saturate(1.1) brightness(.6);object-position:50% 30%}
 .view--can .dwipe__over img{opacity:.4;filter:saturate(1.15) brightness(.55)}
 .view--can .dwipe__txt{position:relative;font-family:var(--font-body);letter-spacing:.4em;text-transform:uppercase;font-size:.78rem;color:var(--ink)}
 .view--can .dwipe__graf{position:relative;font-family:var(--font-graf);font-size:clamp(2.4rem,9vw,6rem);color:var(--ink);text-align:center;line-height:1.06;text-shadow:0 4px 30px rgba(0,0,0,.55)}
@@ -928,7 +1027,8 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
 .view--can section.wrap.c-card{display:flex;flex-direction:column;justify-content:center}
 .view--can .c-card:first-of-type{margin-top:0;padding-top:0;padding-bottom:0;border-top:0;box-shadow:none}
 /* MANIFESTO: fesztival hatterkep sotet overlay-jel (nem ures fekete) */
-.view--can #sec-philo.c-card{background:linear-gradient(rgba(10,9,8,.6),rgba(10,9,8,.78)),url('media/brand-festival.webp') center/cover}
+/* crop-fix (David 07-30): a fejek a kep felso savjaban — a hatter fentre horgonyozva, sose vagja le oket */
+.view--can #sec-philo.c-card{background:linear-gradient(rgba(10,9,8,.6),rgba(10,9,8,.78)),url('media/brand-festival.webp') center 22%/cover}
 @media (prefers-reduced-motion:reduce){
   .view--can .c-card{margin-top:0;box-shadow:none}
 }
@@ -1028,11 +1128,8 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     <div class="half__scrim"></div>
     <div class="half__party" aria-hidden="true"></div>
     <div class="half__content">
-      <span class="eyebrow">250 ml · Walking Pack</span>
-      <span class="half__title">LIVE<br>ICONIC</span>
-      <span class="half__9">9% <span style="font-family:var(--font-body);font-size:.5em;letter-spacing:.1em">ALC.</span></span>
-      <span class="half__line">Vodka. Fesztivál. Beach club.<br>Green Apple, grapefruit, lime.</span>
-      <span class="half__cta">Belépés</span>
+      <img class="slogan__img" src="media/slogan-puretaste.webp" alt="Pure taste. Iconic moments." width="977" height="615" decoding="async">
+      <span class="half__cta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
     </div>
   </a>
 
@@ -1051,10 +1148,8 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     <div class="half__scrim"></div>
     <div class="half__glow" aria-hidden="true"></div>
     <div class="half__content">
-      <span class="eyebrow">750 ml · Prestige Serving Bottle</span>
-      <span class="half__title">Az este<br>ikonja</span>
-      <span class="half__line">Gin &amp; Tonic. Elegáns. Esti.<br>Hibiscus, grapefruit, lime.</span>
-      <span class="half__cta">Belépés</span>
+      <img class="slogan__img" src="media/slogan-notrends.webp" alt="No trends. This is Icon." width="956" height="605" decoding="async">
+      <span class="half__cta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
     </div>
   </a>
 
@@ -1065,11 +1160,10 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     <line x1="55" y1="0" x2="46" y2="100" stroke="#E7C877" stroke-width="2.4" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
   </svg>
 
-  <!-- kozep felirat -->
+  <!-- kozep felirat — CSAK a brand-filozofia (docx) szovege -->
   <div class="landing__center">
     <div class="landing__brand">Icon Spirante IX</div>
-    <div class="landing__prompt">Két személyiség. Egy ikon.</div>
-    <div class="landing__hint">Válassz egy oldalt</div>
+    <div class="landing__tag">Be your own <b>ICON</b>.<br>Your life is your story.</div>
     <div class="landing__divider"></div>
   </div>
 </section>
@@ -1078,10 +1172,6 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
 <nav class="nav" aria-label="Fő navigáció">
   <a class="nav__brand" href="#" data-back>Spirante <b>IX</b></a>
   <div class="nav__links">
-    <a href="#sec-philo" data-scroll>Filozófia</a>
-    <a href="#sec-serve" data-scroll>Serve</a>
-    <a href="#sec-flavor" data-scroll>Ízjegyek</a>
-    <a href="#sec-editions" data-scroll>Kiadások</a>
     <a class="nav__switch" data-switch href="#">Másik oldal</a>
   </div>
 </nav>
@@ -1116,19 +1206,15 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     <canvas class="dust" aria-hidden="true"></canvas>
     <div class="hero__inner">
       <div>
-        <div class="hero__meta">
-          <span class="eyebrow">750 ml Prestige Serving Bottle</span>
-          <span class="eyebrow" style="color:var(--muted)">White Wine &amp; Gin · Lightly Sparkling</span>
-        </div>
         <h1 class="hero__title">
-          <span class="line"><span>Az este</span></span>
-          <span class="line"><span><em style="font-style:normal">ikonja</em></span></span>
+          <span class="line"><span>Az ICON</span></span>
+          <span class="line"><span>Spirante IX</span></span>
+          <span class="line"><span><em style="font-style:normal">rólad szól.</em></span></span>
         </h1>
         <div class="hero__mark"><span class="rule"></span><span class="ws">Icon Spirante IX</span></div>
-        <p class="hero__sub">Fehérbor és gin találkozása. Hibiscus, grapefruit és lime, gondosan válogatott karakter. Egy pohár, ami megáll az időben.</p>
-        <span class="avatar-slot" data-avatar-slot><i></i> Hamarosan: az ICON arca</span>
+        <p class="hero__sub">Arról a pillanatról, amikor eldöntöd, hogy nem mások elvárásai szerint élsz. Hanem a saját történetedet írod.</p>
       </div>
-      <div class="hero__rail" aria-hidden="true">750 ML · PRESTIGE · WHITE WINE &amp; GIN</div>
+      <div class="hero__rail" aria-hidden="true">ICON SPIRANTE IX</div>
     </div>
     <div class="scroll-hint" aria-hidden="true"></div>
   </header>
@@ -1137,16 +1223,19 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   <section class="wrap b-card" id="sec-philo">
     <div class="philo">
       <div class="philo__text" data-reveal>
-        <span class="eyebrow">A filozófia</span>
-        <h2 style="font-size:var(--step-3);margin-top:1rem"><span class="script" style="font-size:1.5em">Pure Taste.</span><br>Iconic Moments.</h2>
-        <p class="dropcap" style="margin-top:1.4rem;color:var(--ink);opacity:.86;max-width:50ch">Az ICON nem csupán egy ital, hanem egy életérzés. Egy emlékezetes pillanat kezdete, ami örök emlékké válik. Modern, trendi, mégis exkluzív, minden kortyban egy felejthetetlen pillanat.</p>
-        <div class="rows" data-slide-group style="margin-top:2rem">
-          <div class="row" data-slide="left"><span class="row__idx">01</span><span class="row__name">Egyedi receptúra<small>Különleges gyümölcsös és alkoholos kombinációk, prémium minőségű alapanyagok.</small></span></div>
-          <div class="row" data-slide="left"><span class="row__idx">02</span><span class="row__name">Prestige üveg<small>Exkluzív megjelenés és prémium csomagolás, ami a polcon és a rendezvényen is kiemelkedik.</small></span></div>
-          <div class="row" data-slide="left"><span class="row__idx">03</span><span class="row__name">Limitált kiadások<small>Folyamatos innováció, a ritkaság értéket teremt. Nem tömegterméknek készül.</small></span></div>
-        </div>
+        <span class="eyebrow">ICON – Brand Filozófiája</span>
+        <h2 style="font-size:var(--step-3);margin-top:1rem">Az ICON nem egyszerűen egy ital.<br><span class="script" style="font-size:1.5em">Ez egy állapot.</span></h2>
+        <p class="dropcap" style="margin-top:1.4rem;color:var(--ink);opacity:.86;max-width:50ch">Egy világban, ahol minden gyorsan történik, az ICON arra hív, hogy állj meg egy pillanatra, és éld meg az élményt. Minden korty egy emlékeztető: a stílus, a minőség és a karakter nem a véletlen műve, hanem tudatos választás.</p>
       </div>
-      <figure class="philo__media" data-slide="right"><img src="media/brand-rooftop.webp" alt="ICON Spirante esti pillanat a város felett"></figure>
+      <figure class="philo__media" data-slide="right"><img src="media/keyart-notrends-chair.webp" alt="ICON Spirante IX, elegáns nő a fotelben, No Trends This is Icon arany felirattal"></figure>
+    </div>
+    <!-- az 5 brand-elv TELJES szelessegben, ket hasabban (David 08-05: jobb elrendezes) -->
+    <div class="rows rows--wide" data-slide-group>
+      <div class="row" data-slide="left"><span class="row__idx">01</span><span class="row__name">A pillanat érték<small>Az ICON nem a hétköznapokból menekít ki – hanem különlegessé teszi őket.</small></span></div>
+      <div class="row" data-slide="left"><span class="row__idx">02</span><span class="row__name">A stílus karakterből születik<small>Az igazi ikonok nem követik a trendeket – ők alakítják azokat.</small></span></div>
+      <div class="row" data-slide="left"><span class="row__idx">03</span><span class="row__name">A prémium minőség hozzáállás kérdése<small>A minőség nem luxus, hanem tisztelet a fogyasztó felé.</small></span></div>
+      <div class="row" data-slide="left"><span class="row__idx">04</span><span class="row__name">Az élmény közösséget teremt<small>Az ICON nem egy ital a polcon – hanem egy közös történet kezdete.</small></span></div>
+      <div class="row" data-slide="left"><span class="row__idx">05</span><span class="row__name">A saját történeted a legfontosabb<small>Nem mások elvárásai számítanak. Az számít, hogy te ki szeretnél lenni.</small></span></div>
     </div>
   <!-- gold draw-in wordmark divider (a filozofia kartya zarasa) -->
   <svg class="goldline" viewBox="0 0 600 250" fill="none" aria-label="ICON Spirante IX">
@@ -1167,32 +1256,32 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   <!-- SERVE — Serving Ritual (ITEM 3: aszimmetrikus kartyak, IntersectionObserver) -->
   <section class="wrap ritual b-card" id="sec-serve">
     <div class="shead" data-reveal>
-      <span class="eyebrow">A szertartás</span>
-      <h2 style="margin-top:1rem">Ahogy az este megkívánja</h2>
+      <span class="eyebrow">ICON – Brand</span>
+      <h2 style="margin-top:1rem">Minden korty egy emlékeztető</h2>
     </div>
     <ol class="ritual__cards">
       <li class="ritual__card">
         <figure class="ritual__media"><img src="media/ritual-pour.webp" alt="Sparkling spritz töltése magas kristálypohárba, bőséges jéggel" loading="lazy"></figure>
         <div class="ritual__body">
           <span class="ritual__num" aria-hidden="true">I</span>
-          <h3>Töltsd ki lassan</h3>
-          <p>Magas pohár, bőséges jég. Hagyd, hogy a buborékok megnyugodjanak.</p>
+          <h3>Egy korty szabadság</h3>
+          <p>Az ICON azoknak készült, akik nem várnak a pillanatokra – hanem megteremtik őket.</p>
         </div>
       </li>
       <li class="ritual__card">
         <figure class="ritual__media"><img src="media/ritual-hibiscus.webp" alt="Talpas pohár arany spritz hibiszkusz-virág dísszel" loading="lazy"></figure>
         <div class="ritual__body">
           <span class="ritual__num" aria-hidden="true">II</span>
-          <h3>Hibiscus &amp; gin</h3>
-          <p>Fehérbor és gin, hibiszkusz aromával. A karakter a pohárban bontakozik ki.</p>
+          <h3>Egy korty inspiráció</h3>
+          <p>Akik tudják, hogy a stílus nem a divatból születik, hanem a személyiségből.</p>
         </div>
       </li>
       <li class="ritual__card">
         <figure class="ritual__media"><img src="media/ritual-lime.webp" alt="Kristálypohár arany spritz friss lime szelettel és jéggel" loading="lazy"></figure>
         <div class="ritual__body">
           <span class="ritual__num" aria-hidden="true">III</span>
-          <h3>Egy szelet lime</h3>
-          <p>A friss zárás. Grapefruit és lime, és az este a tiéd.</p>
+          <h3>Egy korty történet</h3>
+          <p>Akik értik, hogy a minőség nem hangos. De mindig felismerhető.</p>
         </div>
       </li>
     </ol>
@@ -1206,9 +1295,8 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     <div class="band__stat">
       <div class="band__fig" data-reveal aria-hidden="true"><span class="band__num">9</span><span class="band__pct">%</span></div>
       <div class="band__say">
-        <span class="eyebrow" data-reveal data-d="1">A mérték</span>
-        <h2 data-reveal data-d="2">Pontosan ennyi kell az estéhez.</h2>
-        <p data-reveal data-d="3">Több, mint egy pohár bor. Kevesebb, mint egy tomboló éjszaka. Egyensúly, ami órákon át kitart, és nem kér bocsánatot.</p>
+        <h2 data-reveal data-d="2">A minőség nem luxus, hanem alapelv.</h2>
+        <p data-reveal data-d="3">Az élet nem a véletlenek sorozata, hanem tudatos választások története.</p>
       </div>
     </div>
   </section>
@@ -1216,15 +1304,15 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   <!-- IZJEGYEK (stack kartya) -->
   <section class="wrap b-card" id="sec-flavor">
     <div class="duo--rev duo">
-      <figure class="duo__media" data-reveal><img src="media/brand-fireworks.webp" alt="ICON Spirante üveg és doboz az éjszakai fényekben"></figure>
+      <figure class="duo__media" data-reveal><img src="media/keyart-icon-salon.webp" alt="ICON Spirante IX, férfi az arany szalonban oroszlán-relief alatt, ICON felirattal"></figure>
       <div data-reveal data-d="1">
-        <span class="eyebrow">Ízjegyek</span>
-        <h2 style="font-size:var(--step-3);margin-top:1rem">Többrétegű aromaprofil</h2>
-        <p style="margin-top:1.2rem;color:var(--muted);max-width:48ch">Friss, intenzív és karakteres. Könnyen fogyasztható, mégis prémium élmény.</p>
+        <span class="eyebrow">Ízvilág</span>
+        <h2 style="font-size:var(--step-3);margin-top:1rem">Egy ízvilág, amely nem csak finom, hanem karakteres.</h2>
+        <p style="margin-top:1.2rem;color:var(--muted);max-width:48ch">Ikonikus megjelenésével kitűnik, kifinomult ízvilágával pedig emlékezetes marad.</p>
         <div class="rows" style="margin-top:1.8rem">
-          <div class="row"><span class="row__idx">01</span><span class="row__name" style="font-style:normal">Hibiscus</span><span class="row__tag">Florális mélység</span></div>
-          <div class="row"><span class="row__idx">02</span><span class="row__name" style="font-style:normal">Grapefruit</span><span class="row__tag">Citrusos él</span></div>
-          <div class="row"><span class="row__idx">03</span><span class="row__name" style="font-style:normal">Lime</span><span class="row__tag">Friss zárás</span></div>
+          <div class="row"><span class="row__idx">01</span><span class="row__name" style="font-style:normal">Megjelenése</span><span class="row__tag">Ikonikus</span></div>
+          <div class="row"><span class="row__idx">02</span><span class="row__name" style="font-style:normal">Ízvilága</span><span class="row__tag">Kifinomult</span></div>
+          <div class="row"><span class="row__idx">03</span><span class="row__name" style="font-style:normal">Karaktere</span><span class="row__tag">Egyértelmű</span></div>
         </div>
       </div>
     </div>
@@ -1233,22 +1321,22 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   <!-- KIADASOK (stack kartya) -->
   <section class="wrap b-card" id="sec-editions">
     <div class="shead" data-reveal>
-      <span class="eyebrow">Limitált kiadások</span>
-      <h2 style="margin-top:1rem">A ritkaság értéket teremt</h2>
-      <p>Szezonális dizájnok az elegáns estékre. Gyűjthető megjelenések.</p>
+      <span class="eyebrow">ICON – Brand és ami mögötte rejlik</span>
+      <h2 style="margin-top:1rem;font-size:clamp(1.9rem,3.4vw,3rem)">Az ICON azért született, hogy emlékeztessen<br><span class="script" style="font-size:1.55em">valamire, amit sokan elfelejtettek.</span></h2>
+      <p>ICON egy ikonikus megjelenésű, karakteres prémium ital, amely egy különleges pillanatot, inspiráló életérzést és modern stílust hoz a mindennapokba.</p>
     </div>
     <div class="editions">
       <article class="ed">
-        <figure class="ed__media" data-slide="right"><img src="media/brand-yacht.webp" alt="ICON Spirante Prestige Evening, naplemente a fedélzeten"></figure>
-        <div class="ed__body" data-slide="up"><span class="eyebrow">Prestige · Evening</span><h3 class="ed__name" style="margin-top:.6rem">Az este, ahogy az ikonok élik</h3><p class="ed__desc">Naplemente, lassú tempó, egy pohár 750 ml. A nyugodt luxus pillanata.</p></div>
+        <figure class="ed__media" data-slide="right"><img src="media/brand-yacht.webp" alt="ICON Spirante, naplemente a fedélzeten"></figure>
+        <div class="ed__body" data-slide="up"><span class="ed__num">I</span><h3 class="ed__name">Akik nem követni akarják a világot, hanem formálni azt</h3><p class="ed__desc">Akik tudják, hogy az igazi érték nem a hangos pillanatokban, hanem az emlékezetesekben születik.</p><p class="ed__more">Az ICON azoknak szól, akik hisznek abban, hogy minden nap lehetőség arra, hogy egy kicsit jobbak legyünk, mint tegnap voltunk. A stílus nem külsőség, hanem hozzáállás.</p></div>
       </article>
       <article class="ed">
-        <figure class="ed__media" data-slide="left"><img src="media/brand-leopard.webp" alt="ICON Spirante Made for Icons"></figure>
-        <div class="ed__body" data-slide="up"><span class="eyebrow">Not For Everyone</span><h3 class="ed__name" style="margin-top:.6rem">Made for Icons</h3><p class="ed__desc">Nem mindenkinek készült. Azoknak, akik megteremtik a saját pillanatukat.</p></div>
+        <figure class="ed__media" data-slide="left"><img src="media/brand-leopard.webp" alt="ICON Spirante, férfi fekete párduccal"></figure>
+        <div class="ed__body" data-slide="up"><span class="ed__num">II</span><h3 class="ed__name">Nem azért születtünk, hogy beleolvadjunk a tömegbe</h3><p class="ed__desc">Nem azért, hogy kövessük a trendeket.</p><p class="ed__more">Egy márka azoknak, akik tudják: az életük nem egy szerep – hanem egy történet. És a történet főszereplője ők maguk.</p></div>
       </article>
       <article class="ed">
-        <figure class="ed__media" data-slide="right"><img src="media/brand-fireworks.webp" alt="ICON Spirante Iconic Nights"></figure>
-        <div class="ed__body" data-slide="up"><span class="eyebrow">Iconic Nights</span><h3 class="ed__name" style="margin-top:.6rem">Amikor az éj ikonikus lesz</h3><p class="ed__desc">A 750 ml üveg és a 250 ml doboz együtt, a város legfényesebb éjszakáin.</p></div>
+        <figure class="ed__media" data-slide="right"><img src="media/keyart-norules-duo.webp" alt="ICON Spirante IX üveg és doboz — No Rules, Just Vibes plakát koronás nővel"></figure>
+        <div class="ed__body" data-slide="up"><span class="ed__num">III</span><h3 class="ed__name">Az ICON a minőség és az önazonosság találkozása</h3><p class="ed__desc">Egy márka, amely nemcsak egy italt kínál, hanem egy életérzést – azt az érzést, amikor tudod, hogy a saját utadat járod.</p><p class="ed__more">Az ICON Spirante IX ezért született.</p></div>
       </article>
     </div>
   </section>
@@ -1270,16 +1358,17 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
       <i class="closer__fleck" style="left:91%;top:50%;width:4px;height:4px;opacity:.55"></i>
     </div>
     <div class="closer__in">
-      <h2 data-reveal>Nem követjük a trendeket. Alakítjuk őket.</h2>
-      <button class="btn" data-back type="button" data-reveal data-d="1">Vissza a választáshoz</button>
+      <h2 data-reveal>Mert a legnagyobb ikonok nem a reflektorfényben születnek.</h2>
+      <p class="closer__p" data-reveal data-d="1">Hanem akkor, amikor valaki eldönti: nem mások útját járja. Hanem a sajátját.</p>
+      <button class="btn" data-back type="button" data-reveal data-d="2">Vissza a választáshoz</button>
     </div>
   </section>
 
   <footer class="foot">
     <div class="foot__18">18+</div>
     <div class="foot__brand">Icon Spirante IX</div>
-    <div class="foot__tag">Pure Taste. Iconic Moments.</div>
-    <div class="foot__legal">750 ml Prestige Serving Bottle · White Wine &amp; Gin · 9% alc.<br>A túlzott alkoholfogyasztás károsítja az egészséget. Csak 18 éven felülieknek.</div>
+    <div class="foot__tag">Be your own ICON. Your life is your story.</div>
+    <div class="foot__legal">A túlzott alkoholfogyasztás károsítja az egészséget. Csak 18 éven felülieknek.</div>
   </footer>
 </main>
 
@@ -1299,24 +1388,19 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     <div class="hero__bg" data-parallax="0.16"><img src="media/brand-party-wide.webp" alt="ICON Spirante IX 250 ml Walking Pack, Live Iconic, What's your story party"></div>
     <div class="hero__scrim"></div>
     <div class="hero__inner">
-      <div class="hero__meta">
-        <span class="eyebrow">250 ml Walking Pack</span>
-        <span class="eyebrow" style="color:var(--muted)">White Wine &amp; Vodka · 9% alc.</span>
-      </div>
       <h1 class="hero__title">
-        <span class="line"><span>LIVE</span></span>
-        <span class="line"><span>ICONIC</span></span>
+        <span class="line"><span>Be your own</span></span>
+        <span class="line"><span>ICON.</span></span>
       </h1>
-      <p class="hero__cantag" data-reveal><b>Green Apple</b> · 9% · Walking Pack · <b>Live Iconic</b></p>
-      <span class="avatar-slot" data-avatar-slot><i></i> Hamarosan: az ICON arca</span>
+      <p class="hero__cantag" data-reveal><b>Your life is your story.</b></p>
     </div>
     <div class="scroll-hint" aria-hidden="true"></div>
   </header>
 
   <!-- MARQUEE -->
   <div class="marquee" aria-hidden="true"><div class="marquee__in">
-    <span>Pure Taste <i>✕</i> <b>Iconic Moments</b> <i>✕</i> Live Iconic <i>✕</i> Premium Spritz <i>✕</i> </span>
-    <span>Pure Taste <i>✕</i> <b>Iconic Moments</b> <i>✕</i> Live Iconic <i>✕</i> Premium Spritz <i>✕</i> </span>
+    <span>Be your own ICON <i>✕</i> <b>Your life is your story</b> <i>✕</i> Ez egy állapot <i>✕</i> Egy korty szabadság <i>✕</i> </span>
+    <span>Be your own ICON <i>✕</i> <b>Your life is your story</b> <i>✕</i> Ez egy állapot <i>✕</i> Egy korty szabadság <i>✕</i> </span>
   </div></div>
 
   <!-- ITEM 4 — fesztival szin-hid: marquee -> manifesto (pink/purple villanas, nem fekete res) -->
@@ -1325,13 +1409,10 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   <!-- MANIFESTO (felhuzodó kartya) -->
   <section class="wrap c-card" id="sec-philo">
     <div class="manifesto">
-      <span class="manifesto__tag" data-reveal="left">Kiáltvány</span>
-      <h2 class="manifesto__h" data-reveal data-d="1">Nem kérsz<br><span class="swipe-mark">engedélyt.</span></h2>
-      <p class="manifesto__chips" data-reveal data-d="2">
-        <span class="tape">Pure Taste</span>
-        <span class="tape">Live Iconic</span>
-        <span class="tape">Not For Everyone</span>
-      </p>
+      <span class="manifesto__tag" data-reveal="left">ICON – Brand</span>
+      <h2 class="manifesto__h" data-reveal data-d="1">Az ICON Spirante IX<br>egy másik utat <span class="swipe-mark">mutat.</span></h2>
+      <p class="manifesto__p" data-reveal data-d="2">A világ tele van zajjal, elvárásokkal és szerepekkel. Mindenki meg akarja mondani, hogyan élj, mit válassz, ki legyél.</p>
+      <figure class="manifesto__fig" data-reveal="right"><img src="media/keyart-skatepark.webp" alt="ICON Spirante IX Walking Pack a gördeszkaparkban — What's your story?" loading="lazy"></figure>
     </div>
   </section>
 
@@ -1344,13 +1425,11 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     <div class="c9">
       <div class="c9__fig" aria-hidden="true"><span class="c9__9"><span class="c9__9base">9</span><span class="c9__9fill">9</span></span><span class="c9__pct">%</span></div>
       <div class="c9__say">
-        <p class="c9__pulse" data-reveal><span class="cpulse" aria-hidden="true"></span> Fokozat: éles</p>
-        <h2 class="c9__h" data-reveal data-d="1">És bekapcsol az este.</h2>
-        <p class="c9__body" data-reveal data-d="2">Nem melegítő kör, nem finálé. Pont az a fokozat, ahol minden élesebb: a basszus, a fények, te.</p>
+        <p class="c9__pulse" data-reveal><span class="cpulse" aria-hidden="true"></span> Ez egy állapot.</p>
+        <h2 class="c9__h" data-reveal data-d="1">Egy különleges energia,</h2>
+        <p class="c9__body" data-reveal data-d="2">amely a pohárban kezdődik, de az emberek között válik valódi élménnyé.</p>
         <p class="c9__chips" data-reveal data-d="3">
-          <span class="tape">9% alc.</span>
-          <span class="tape">Fesztivál</span>
-          <span class="tape">Rooftop</span>
+          <span class="tape">Itt valami más történik</span>
         </p>
       </div>
     </div>
@@ -1360,26 +1439,24 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   <section class="hstrip" id="sec-flavor" aria-label="Ízvilág">
     <div class="hstrip__vp">
       <div class="hstrip__row">
-        <article class="hpanel">
-          <figure class="hpanel__media"><img src="media/brand-festival.webp" alt="Fesztivál hangulat"></figure>
-          <span class="hpanel__no">01</span>
-          <div class="hpanel__copy"><h3>Green Apple</h3><p>Roppanós nyitás. A tömeg ritmusa.</p><span class="hpanel__tag">Fesztivál</span></div>
+        <article class="hpanel hpanel--p">
+          <figure class="hpanel__media"><img src="media/keyart-venus-statue.webp" alt="Venus-szobor kapucnis pulóverben, arany Spirante szem-szalaggal — No Trends, This is Icon"></figure>
+          <div class="hpanel__copy"><span class="hpanel__no">01</span><h3>Az élet nem a megszokásról szól.</h3><p>Hanem a pillanatokról.</p></div>
         </article>
-        <article class="hpanel">
-          <figure class="hpanel__media"><img src="media/brand-pool.webp" alt="Beach club"></figure>
-          <span class="hpanel__no">02</span>
-          <div class="hpanel__copy"><h3>Grapefruit</h3><p>Citrusos él. Medence, nap, jég.</p><span class="hpanel__tag">Beach club</span></div>
+        <article class="hpanel hpanel--p">
+          <figure class="hpanel__media"><img src="media/keyart-monalisa.webp" alt="Mona Lisa nyalókával, arany Spirante szem-szalaggal — No Trends, This is Icon"></figure>
+          <div class="hpanel__copy"><span class="hpanel__no">02</span><h3>Amikor megáll az idő egy kortyra.</h3><p>Amikor egy íz, egy illat vagy egy találkozás történetté válik.</p></div>
         </article>
         <article class="hpanel">
           <figure class="hpanel__media"><img src="media/brand-fireworks.webp" alt="Iconic nights"></figure>
           <span class="hpanel__no">03</span>
-          <div class="hpanel__copy"><h3>Lime</h3><p>Friss zárás. Amikor felrobban az éj.</p><span class="hpanel__tag">Iconic nights</span></div>
+          <div class="hpanel__copy"><h3>Itt valami más történik.</h3><p>Egy ikonikus megjelenés, amely már messziről üzeni: itt valami más történik.</p></div>
         </article>
         <article class="hpanel hpanel--end">
           <div class="hpanel__copy hpanel__copy--c">
             <span class="hpanel__crown">✕ Icon ✕</span>
             <span class="hpanel__big">9%</span>
-            <p class="hpanel__end-tag">Walking Pack. Egy kéz, egy este.</p>
+            <p class="hpanel__end-tag">Az ICON Spirante IX ezért született.</p>
             <span class="cpulse" aria-hidden="true"></span>
           </div>
         </article>
@@ -1392,22 +1469,20 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     <div class="band__bg" data-parallax="0.1"><img src="media/brand-festival.webp" alt="ICON Spirante fesztivál tömeg, jó vibe"></div>
     <div class="band__scrim"></div>
     <div class="band__in">
-      <span class="eyebrow" data-reveal>A színtér</span>
       <hr class="scene__rule" data-reveal data-d="1" aria-hidden="true">
-      <h2 data-reveal data-d="2" data-scramble>Itt születnek az ikonikus pillanatok.</h2>
+      <h2 data-reveal data-d="2" data-scramble>Az életük nem egy szerep – hanem egy történet.</h2>
     </div>
   </section>
 
   <!-- SERVE — ticket-stub sticky-stack (felhuzodó kartya) -->
   <section class="wrap c-card" id="sec-serve">
     <div class="shead" data-reveal>
-      <span class="eyebrow">Mozgásban</span>
-      <h2 style="font-family:var(--font-graf);margin-top:1rem">Nyisd ki, és ikon leszel</h2>
-      <p>A 250 ml Walking Pack a mozgás itala. Egy kézben, mindenhol veled.</p>
+      <h2 style="font-family:var(--font-graf);margin-top:1rem">Az ICON azoknak született, akik mernek saját döntéseket hozni</h2>
+      <p>Egy olyan utat, ahol a siker nem a megfelelésről szól, hanem arról, hogy minden nap egy kicsit jobb legyél annál, aki tegnap voltál.</p>
     </div>
     <div class="stubs">
-      <div class="stub" data-reveal="left"><span class="stub__no">I</span><span class="stub__name">Premium Spritz with Vodka<small>Fehérbor és vodka egyensúlya, green apple és grapefruit aromával, hidegen, jégen.</small></span><span class="stub__tag">9% · Lightly Sparkling</span></div>
-      <div class="stub" data-reveal="left"><span class="stub__no">II</span><span class="stub__name">White Wine &amp; Vodka<small>Öntsd magas pohárba, jéggel és grapefruit szelettel, vagy idd a dobozból a tömegben.</small></span><span class="stub__tag">Walking Pack</span></div>
+      <div class="stub" data-reveal="left"><span class="stub__no">I</span><span class="stub__name">Akik értékelik a minőséget<small>Akik tudják, hogy a stílus nem a hangosságban, hanem a karakterben rejlik.</small></span></div>
+      <div class="stub" data-reveal="left"><span class="stub__no">II</span><span class="stub__name">Mert végül minden embernek van egy története<small>És a legjobb történeteket azok írják, akik mernek önmaguk lenni.</small></span></div>
     </div>
   </section>
 
@@ -1419,7 +1494,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     </div>
     <div class="dwipe__over">
       <img src="media/party-festival.webp" alt="" aria-hidden="true">
-      <span class="dwipe__graf">ne csak nézd<br><em>éld át</em></span>
+      <span class="dwipe__graf">De ez valójában<br><em>nem az italról szól.</em></span>
     </div>
   </div>
 
@@ -1430,25 +1505,26 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
 
   <!-- KIADASOK — overlapping collage (felhuzodó kartya) -->
   <section class="wrap c-card" id="sec-editions">
-    <span class="ed-stamp" data-reveal="left">Limitált kiadások, gyűjtsd a pillanatokat</span>
+    <span class="ed-stamp" data-reveal="left">És a történet főszereplője ők maguk</span>
     <div class="collage">
-      <figure class="poster" data-slide="left"><img src="media/brand-festival.webp" alt="ICON Spirante Summer Festival Edition"><figcaption class="poster__cap">A fesztivál hangja<small>Summer Festival</small></figcaption></figure>
-      <figure class="poster" data-slide="left"><img src="media/brand-pool.webp" alt="ICON Spirante Beach Club Edition"><figcaption class="poster__cap">Good Times, Great Drinks<small>Beach Club</small></figcaption></figure>
-      <figure class="poster" data-slide="left"><img src="media/party-festival.webp" alt="ICON Spirante Iconic Nights"><figcaption class="poster__cap">Amikor felrobban az éj<small>Iconic Nights</small></figcaption></figure>
+      <figure class="poster" data-slide="left"><img src="media/keyart-gold-emblem.webp" alt="ICON Spirante IX arany festék-kehely embléma fekete alapon"><figcaption class="poster__cap">Ikonikus megjelenés<small>ICON Spirante IX</small></figcaption></figure>
+      <figure class="poster" data-slide="left"><img src="media/brand-pool.webp" alt="ICON Spirante beach club"><figcaption class="poster__cap">Inspiráló életérzés<small>ICON Spirante IX</small></figcaption></figure>
+      <figure class="poster" data-slide="left"><img src="media/party-festival.webp" alt="ICON Spirante éjszaka"><figcaption class="poster__cap">Modern stílus<small>ICON Spirante IX</small></figcaption></figure>
     </div>
   </section>
 
   <!-- CLOSER -->
   <section class="wrap closer">
-    <h2 data-reveal style="font-family:var(--font-graf)">Légy a saját ikonod.</h2>
-    <button class="btn" data-back type="button" data-reveal data-d="1">Vissza a választáshoz</button>
+    <h2 data-reveal style="font-family:var(--font-graf)">Az ICON Spirante IX rólad szól.</h2>
+    <p class="closer__p" data-reveal data-d="1">Be your own ICON. Your life is your story.</p>
+    <button class="btn" data-back type="button" data-reveal data-d="2">Vissza a választáshoz</button>
   </section>
 
   <footer class="foot">
     <div class="foot__18">18+</div>
     <div class="foot__brand">Icon Spirante IX</div>
-    <div class="foot__tag">Live Iconic.</div>
-    <div class="foot__legal">250 ml Walking Pack · White Wine &amp; Vodka · 9% alc.<br>A túlzott alkoholfogyasztás károsítja az egészséget. Csak 18 éven felülieknek.</div>
+    <div class="foot__tag">Your life is your story.</div>
+    <div class="foot__legal">A túlzott alkoholfogyasztás károsítja az egészséget. Csak 18 éven felülieknek.</div>
   </footer>
 </main>
 
@@ -1748,6 +1824,10 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
       var rowEl=document.querySelector('.view--can .hstrip__row');
       if(!rowEl) return;
       var dist=function(){ return rowEl.scrollWidth - innerWidth; };
+      // ultrawide guard: ha a sor rovidebb a viewportnal, nincs mit gorgetni — pin kihagy, a sor kozepre zar
+      if(dist()<=40) return;
+      var stripEl=document.querySelector('.view--can .hstrip');
+      if(stripEl) stripEl.classList.add('hstrip--pinned');
       var horiz=gsap.to(rowEl,{x:function(){return -dist();}, ease:'none',
         scrollTrigger:{trigger:'.view--can .hstrip', pin:'.view--can .hstrip__vp',
           start:'top top', end:function(){return '+='+dist();},
@@ -1756,22 +1836,26 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
         gsap.fromTo(img,{xPercent:-10},{xPercent:10, ease:'none',
           scrollTrigger:{trigger:img.closest('.hpanel'), containerAnimation:horiz, start:'left right', end:'right left', scrub:true}});
       });
-      return function(){ horiz.kill(); };
+      return function(){ horiz.kill(); if(stripEl) stripEl.classList.remove('hstrip--pinned'); };
     });
-    // ticket-stub sticky-stack scale-back
-    var stubs=gsap.utils.toArray('.view--can .stub');
-    stubs.forEach(function(card,i){
-      if(i===stubs.length-1) return;
-      gsap.to(card,{scale:.94, yPercent:-4, ease:'none',
-        scrollTrigger:{trigger:stubs[i+1], start:'top bottom', end:'top top', scrub:true}});
-    });
+    // ticket-stub sticky-stack scale-back — CSAK scale (a yPercent lift a kovetkezo FOLE tolta az elozot)
+    if(matchMedia('(min-width:769px)').matches){
+      var stubs=gsap.utils.toArray('.view--can .stub');
+      stubs.forEach(function(card,i){
+        if(i===stubs.length-1) return;
+        gsap.to(card,{scale:.94, ease:'none', transformOrigin:'50% 100%',
+          scrollTrigger:{trigger:stubs[i+1], start:'top bottom', end:'top top', scrub:true}});
+      });
+    }
     // diagonal wipe divider
+    gsap.matchMedia().add('(min-width:769px)',function(){
     gsap.fromTo('.view--can .dwipe__over',
       {clipPath:'inset(100% 0 0 0)'},
       {clipPath:'inset(0% 0 0 0)', ease:'none',
        scrollTrigger:{trigger:'.view--can .dwipe', start:'top top', end:'bottom bottom', scrub:true, invalidateOnRefresh:true}});
     gsap.fromTo('.view--can .dwipe__graf',{yPercent:24,opacity:.25},{yPercent:0,opacity:1, ease:'none',
        scrollTrigger:{trigger:'.view--can .dwipe', start:'top top', end:'center center', scrub:true}});
+    });
   }
 
   var current=null;
@@ -1870,14 +1954,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
       if(enterLock) return; enterLock=true; setTimeout(function(){enterLock=false;},800);
       enterView(half.getAttribute('data-enter'));
     });
-    if(!touch){
-      half.addEventListener('mouseenter', function(){
-        document.querySelectorAll('.half[data-enter]').forEach(function(h){ if(h!==half) h.classList.add('is-dim'); });
-      });
-      half.addEventListener('mouseleave', function(){
-        document.querySelectorAll('.half[data-enter]').forEach(function(h){ h.classList.remove('is-dim'); });
-      });
-    }
+    /* NINCS hover-dim a masik felen (David 07-30): hoverkor csak a sajat fel reagal (scale/glow) */
   });
 
   /* bottle fel: kurzor-koveto epulet-fenykeve (elegans hover, degradalhato) */
@@ -1919,19 +1996,9 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
      ITEM 3/5/6/7 — gsap-fuggetlen effektek (IntersectionObserver + sajat rAF)
      ========================================================= */
 
-  /* ITEM 3 — Serving Ritual STICKY-STACK (starter-kit A8): a kartyak egymasba csusznak.
-     A CSS position:sticky onmagaban stackel (gsap nelkul is); a gsap CSAK a melyseg-
-     erzetet adja (a takart kartya kicsit kisebb + halvanyabb). reduced-motion -> normal flow. */
-  (function(){
-    if(reduce || !hasGSAP || !hasST) return;
-    var cards=[].slice.call(document.querySelectorAll('.view--bottle .ritual__card'));
-    if(cards.length<2) return;
-    cards.forEach(function(card,i){
-      if(i===cards.length-1) return;   // az utolso nem kicsinyedik
-      gsap.to(card,{scale:.91,opacity:.16,ease:'none',transformOrigin:'50% 30%',
-        scrollTrigger:{trigger:card,start:'top 13%',end:'bottom 13%',scrub:true}});
-    });
-  })();
+  /* ITEM 3 — Serving Ritual STICKY-STACK: TISZTA CSS opak kartyak (David 07-30 fix).
+     A korabbi gsap "melyseg" tween (scale .91 + opacity .16) SZELLEMKEPET csinalt:
+     a takart kartya atderengett a kovetkezo alatt. Torolve — a sticky + opak bg eleg. */
 
   /* ITEM 7 — manifesto festek-sopres alahuzas */
   (function(){

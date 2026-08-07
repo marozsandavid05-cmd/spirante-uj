@@ -20,3 +20,16 @@ chooser-motion-*.html
 _aurora-ref/
 _caesar-qa-uj-push/
 _qa-greed-0709/
+
+# tooling junk
+.claude-flow/
+
+# forras-anyagok es kulon al-projekt (nem az elo oldal resze)
+Coming soon/
+media/Spirante szöveg doxc forma/
+media/keyart-bottlP-*
+media/keyart-bottle-*
+media/keyart-leopard-*
+media/brand-spirante-paint.webp
+media/slogan-puretaste-A.webp
+media/slogan-puretaste-B.webp
