@@ -1059,6 +1059,12 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   .view--can .dwipe__base,.view--can .dwipe__over{position:relative;height:60vh;margin-top:0}
   .view--can .dwipe__over{clip-path:none}
 }
+/* MOBIL KEP-OPTIMALIZACIO: kis variansok a CSS-hatterekhez (a nagy webp-k telefonon akadast okoztak) */
+@media (max-width:768px){
+  .view--bottle{--amb-tex:url('media/hf_20260708_173036_2d71e5f0-6500-49f5-b7ba-5a47db645f05-720.webp')}
+  .view--can{--amb-tex:url('media/brand-festival-720.webp')}
+  .view--can #sec-philo.c-card{background:linear-gradient(rgba(10,9,8,.6),rgba(10,9,8,.78)),url('media/brand-festival-720.webp') center 22%/cover}
+}
 </style>
 </head>
 <body>
@@ -1128,7 +1134,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     <div class="half__scrim"></div>
     <div class="half__party" aria-hidden="true"></div>
     <div class="half__content">
-      <img class="slogan__img" src="media/slogan-puretaste.webp" alt="Pure taste. Iconic moments." width="977" height="615" decoding="async">
+      <img class="slogan__img" src="media/slogan-puretaste.webp" srcset="media/slogan-puretaste-720.webp 720w, media/slogan-puretaste-1080.webp 1080w, media/slogan-puretaste.webp 1197w" sizes="(max-width:768px) 92vw, 977px" alt="Pure taste. Iconic moments." width="977" height="615" loading="lazy" decoding="async">
       <span class="half__cta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
     </div>
   </a>
@@ -1148,7 +1154,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     <div class="half__scrim"></div>
     <div class="half__glow" aria-hidden="true"></div>
     <div class="half__content">
-      <img class="slogan__img" src="media/slogan-notrends.webp" alt="No trends. This is Icon." width="956" height="605" decoding="async">
+      <img class="slogan__img" src="media/slogan-notrends.webp" srcset="media/slogan-notrends-720.webp 720w, media/slogan-notrends-1080.webp 1080w, media/slogan-notrends.webp 1200w" sizes="(max-width:768px) 92vw, 956px" alt="No trends. This is Icon." width="956" height="605" loading="lazy" decoding="async">
       <span class="half__cta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
     </div>
   </a>
@@ -1199,7 +1205,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   </div>
 
   <header class="hero is-in-static b-card">
-    <div class="hero__bg" data-parallax="0.16"><img src="media/hf_20260708_173036_2d71e5f0-6500-49f5-b7ba-5a47db645f05.webp" alt="ICON Spirante IX 750 ml keyart, férfi fekete párduccal a villa lépcsőjén, Made for Icons, arany graffiti korona"></div>
+    <div class="hero__bg" data-parallax="0.16"><img src="media/hf_20260708_173036_2d71e5f0-6500-49f5-b7ba-5a47db645f05-1920.webp" srcset="media/hf_20260708_173036_2d71e5f0-6500-49f5-b7ba-5a47db645f05-720.webp 720w, media/hf_20260708_173036_2d71e5f0-6500-49f5-b7ba-5a47db645f05-1280.webp 1280w, media/hf_20260708_173036_2d71e5f0-6500-49f5-b7ba-5a47db645f05-1920.webp 1920w, media/hf_20260708_173036_2d71e5f0-6500-49f5-b7ba-5a47db645f05.webp 2752w" sizes="100vw" decoding="async" alt="ICON Spirante IX 750 ml keyart, férfi fekete párduccal a villa lépcsőjén, Made for Icons, arany graffiti korona"></div>
     <div class="hero__scrim"></div>
     <div class="hero__floor" aria-hidden="true"></div>
     <div class="hero__vig" aria-hidden="true"></div>
@@ -1227,7 +1233,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
         <h2 style="font-size:var(--step-3);margin-top:1rem">Az ICON nem egyszerűen egy ital.<br><span class="script" style="font-size:1.5em">Ez egy állapot.</span></h2>
         <p class="dropcap" style="margin-top:1.4rem;color:var(--ink);opacity:.86;max-width:50ch">Egy világban, ahol minden gyorsan történik, az ICON arra hív, hogy állj meg egy pillanatra, és éld meg az élményt. Minden korty egy emlékeztető: a stílus, a minőség és a karakter nem a véletlen műve, hanem tudatos választás.</p>
       </div>
-      <figure class="philo__media" data-slide="right"><img src="media/keyart-notrends-chair.webp" alt="ICON Spirante IX, elegáns nő a fotelben, No Trends This is Icon arany felirattal"></figure>
+      <figure class="philo__media" data-slide="right"><img src="media/keyart-notrends-chair.webp" srcset="media/keyart-notrends-chair-720.webp 720w, media/keyart-notrends-chair-1080.webp 1080w, media/keyart-notrends-chair.webp 1400w" sizes="(max-width:768px) 92vw, 46vw" loading="lazy" decoding="async" alt="ICON Spirante IX, elegáns nő a fotelben, No Trends This is Icon arany felirattal"></figure>
     </div>
     <!-- az 5 brand-elv TELJES szelessegben, ket hasabban (David 08-05: jobb elrendezes) -->
     <div class="rows rows--wide" data-slide-group>
@@ -1261,7 +1267,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     </div>
     <ol class="ritual__cards">
       <li class="ritual__card">
-        <figure class="ritual__media"><img src="media/ritual-pour.webp" alt="Sparkling spritz töltése magas kristálypohárba, bőséges jéggel" loading="lazy"></figure>
+        <figure class="ritual__media"><img src="media/ritual-pour.webp" srcset="media/ritual-pour-720.webp 720w, media/ritual-pour.webp 1100w" sizes="(max-width:768px) 92vw, 30vw" loading="lazy" decoding="async" alt="Sparkling spritz töltése magas kristálypohárba, bőséges jéggel"></figure>
         <div class="ritual__body">
           <span class="ritual__num" aria-hidden="true">I</span>
           <h3>Egy korty szabadság</h3>
@@ -1269,7 +1275,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
         </div>
       </li>
       <li class="ritual__card">
-        <figure class="ritual__media"><img src="media/ritual-hibiscus.webp" alt="Talpas pohár arany spritz hibiszkusz-virág dísszel" loading="lazy"></figure>
+        <figure class="ritual__media"><img src="media/ritual-hibiscus.webp" srcset="media/ritual-hibiscus-720.webp 720w, media/ritual-hibiscus.webp 1100w" sizes="(max-width:768px) 92vw, 30vw" loading="lazy" decoding="async" alt="Talpas pohár arany spritz hibiszkusz-virág dísszel"></figure>
         <div class="ritual__body">
           <span class="ritual__num" aria-hidden="true">II</span>
           <h3>Egy korty inspiráció</h3>
@@ -1277,7 +1283,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
         </div>
       </li>
       <li class="ritual__card">
-        <figure class="ritual__media"><img src="media/ritual-lime.webp" alt="Kristálypohár arany spritz friss lime szelettel és jéggel" loading="lazy"></figure>
+        <figure class="ritual__media"><img src="media/ritual-lime.webp" srcset="media/ritual-lime-720.webp 720w, media/ritual-lime.webp 1100w" sizes="(max-width:768px) 92vw, 30vw" loading="lazy" decoding="async" alt="Kristálypohár arany spritz friss lime szelettel és jéggel"></figure>
         <div class="ritual__body">
           <span class="ritual__num" aria-hidden="true">III</span>
           <h3>Egy korty történet</h3>
@@ -1289,7 +1295,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
 
   <!-- FULL-BLEED band — 9% mint hos szam (stack kartya) -->
   <section class="band band--stat b-card">
-    <div class="band__bg" data-parallax="0.1"><img src="media/brand-gin-woman-wide.webp" alt="Nő az ICON Spirante IX Prestige üveggel, lila akvarell kulcsvizuál"></div>
+    <div class="band__bg" data-parallax="0.1"><img src="media/brand-gin-woman-wide-1920.webp" srcset="media/brand-gin-woman-wide-720.webp 720w, media/brand-gin-woman-wide-1280.webp 1280w, media/brand-gin-woman-wide-1920.webp 1920w, media/brand-gin-woman-wide.webp 2752w" sizes="100vw" loading="lazy" decoding="async" alt="Nő az ICON Spirante IX Prestige üveggel, lila akvarell kulcsvizuál"></div>
     <div class="band__scrim"></div>
     <div class="band__glow" aria-hidden="true"></div>
     <div class="band__stat">
@@ -1304,7 +1310,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   <!-- IZJEGYEK (stack kartya) -->
   <section class="wrap b-card" id="sec-flavor">
     <div class="duo--rev duo">
-      <figure class="duo__media" data-reveal><img src="media/keyart-icon-salon.webp" alt="ICON Spirante IX, férfi az arany szalonban oroszlán-relief alatt, ICON felirattal"></figure>
+      <figure class="duo__media" data-reveal><img src="media/keyart-icon-salon.webp" srcset="media/keyart-icon-salon-720.webp 720w, media/keyart-icon-salon-1080.webp 1080w, media/keyart-icon-salon.webp 1400w" sizes="(max-width:768px) 92vw, 46vw" loading="lazy" decoding="async" alt="ICON Spirante IX, férfi az arany szalonban oroszlán-relief alatt, ICON felirattal"></figure>
       <div data-reveal data-d="1">
         <span class="eyebrow">Ízvilág</span>
         <h2 style="font-size:var(--step-3);margin-top:1rem">Egy ízvilág, amely nem csak finom, hanem karakteres.</h2>
@@ -1327,15 +1333,15 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     </div>
     <div class="editions">
       <article class="ed">
-        <figure class="ed__media" data-slide="right"><img src="media/brand-yacht.webp" alt="ICON Spirante, naplemente a fedélzeten"></figure>
+        <figure class="ed__media" data-slide="right"><img src="media/brand-yacht.webp" srcset="media/brand-yacht-720.webp 720w, media/brand-yacht.webp 1086w" sizes="(max-width:768px) 92vw, 40vw" loading="lazy" decoding="async" alt="ICON Spirante, naplemente a fedélzeten"></figure>
         <div class="ed__body" data-slide="up"><span class="ed__num">I</span><h3 class="ed__name">Akik nem követni akarják a világot, hanem formálni azt</h3><p class="ed__desc">Akik tudják, hogy az igazi érték nem a hangos pillanatokban, hanem az emlékezetesekben születik.</p><p class="ed__more">Az ICON azoknak szól, akik hisznek abban, hogy minden nap lehetőség arra, hogy egy kicsit jobbak legyünk, mint tegnap voltunk. A stílus nem külsőség, hanem hozzáállás.</p></div>
       </article>
       <article class="ed">
-        <figure class="ed__media" data-slide="left"><img src="media/brand-leopard.webp" alt="ICON Spirante, férfi fekete párduccal"></figure>
+        <figure class="ed__media" data-slide="left"><img src="media/brand-leopard.webp" srcset="media/brand-leopard-720.webp 720w, media/brand-leopard.webp 1023w" sizes="(max-width:768px) 92vw, 40vw" loading="lazy" decoding="async" alt="ICON Spirante, férfi fekete párduccal"></figure>
         <div class="ed__body" data-slide="up"><span class="ed__num">II</span><h3 class="ed__name">Nem azért születtünk, hogy beleolvadjunk a tömegbe</h3><p class="ed__desc">Nem azért, hogy kövessük a trendeket.</p><p class="ed__more">Egy márka azoknak, akik tudják: az életük nem egy szerep – hanem egy történet. És a történet főszereplője ők maguk.</p></div>
       </article>
       <article class="ed">
-        <figure class="ed__media" data-slide="right"><img src="media/keyart-norules-duo.webp" alt="ICON Spirante IX üveg és doboz — No Rules, Just Vibes plakát koronás nővel"></figure>
+        <figure class="ed__media" data-slide="right"><img src="media/keyart-norules-duo.webp" srcset="media/keyart-norules-duo-720.webp 720w, media/keyart-norules-duo-1080.webp 1080w, media/keyart-norules-duo.webp 1400w" sizes="(max-width:768px) 92vw, 40vw" loading="lazy" decoding="async" alt="ICON Spirante IX üveg és doboz — No Rules, Just Vibes plakát koronás nővel"></figure>
         <div class="ed__body" data-slide="up"><span class="ed__num">III</span><h3 class="ed__name">Az ICON a minőség és az önazonosság találkozása</h3><p class="ed__desc">Egy márka, amely nemcsak egy italt kínál, hanem egy életérzést – azt az érzést, amikor tudod, hogy a saját utadat járod.</p><p class="ed__more">Az ICON Spirante IX ezért született.</p></div>
       </article>
     </div>
@@ -1344,7 +1350,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   <!-- CLOSER — Aurora zaro-atmoszfera (hibiscus serve, sotetitve+arany tonus, on-brand) -->
   <section class="closer closer--atmo" aria-label="Záró">
     <div class="closer__bg" aria-hidden="true">
-      <img src="media/ritual-hibiscus.webp" alt="" loading="lazy" decoding="async">
+      <img src="media/ritual-hibiscus-720.webp" alt="" loading="lazy" decoding="async">
       <span class="closer__scrim"></span>
       <span class="closer__vig"></span>
       <span class="closer__grain"></span>
@@ -1385,7 +1391,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   </div>
 
   <header class="hero">
-    <div class="hero__bg" data-parallax="0.16"><img src="media/brand-party-wide.webp" alt="ICON Spirante IX 250 ml Walking Pack, Live Iconic, What's your story party"></div>
+    <div class="hero__bg" data-parallax="0.16"><img src="media/brand-party-wide-1920.webp" srcset="media/brand-party-wide-720.webp 720w, media/brand-party-wide-1280.webp 1280w, media/brand-party-wide-1920.webp 1920w, media/brand-party-wide.webp 2752w" sizes="100vw" decoding="async" alt="ICON Spirante IX 250 ml Walking Pack, Live Iconic, What's your story party"></div>
     <div class="hero__scrim"></div>
     <div class="hero__inner">
       <h1 class="hero__title">
@@ -1412,7 +1418,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
       <span class="manifesto__tag" data-reveal="left">ICON – Brand</span>
       <h2 class="manifesto__h" data-reveal data-d="1">Az ICON Spirante IX<br>egy másik utat <span class="swipe-mark">mutat.</span></h2>
       <p class="manifesto__p" data-reveal data-d="2">A világ tele van zajjal, elvárásokkal és szerepekkel. Mindenki meg akarja mondani, hogyan élj, mit válassz, ki legyél.</p>
-      <figure class="manifesto__fig" data-reveal="right"><img src="media/keyart-skatepark.webp" alt="ICON Spirante IX Walking Pack a gördeszkaparkban — What's your story?" loading="lazy"></figure>
+      <figure class="manifesto__fig" data-reveal="right"><img src="media/keyart-skatepark.webp" srcset="media/keyart-skatepark-720.webp 720w, media/keyart-skatepark-1080.webp 1080w, media/keyart-skatepark.webp 1400w" sizes="(max-width:768px) 92vw, 46vw" loading="lazy" decoding="async" alt="ICON Spirante IX Walking Pack a gördeszkaparkban — What's your story?"></figure>
     </div>
   </section>
 
@@ -1421,7 +1427,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
 
   <!-- 9% BIG — structural spine (felhuzodó kartya) -->
   <section class="wrap flash-edge c-card" id="sec-9">
-    <div class="c9__bg" aria-hidden="true"><img src="media/brand-fireworks.webp" alt=""></div>
+    <div class="c9__bg" aria-hidden="true"><img src="media/brand-fireworks.webp" srcset="media/brand-fireworks-720.webp 720w, media/brand-fireworks.webp 1054w" sizes="100vw" loading="lazy" decoding="async" alt=""></div>
     <div class="c9">
       <div class="c9__fig" aria-hidden="true"><span class="c9__9"><span class="c9__9base">9</span><span class="c9__9fill">9</span></span><span class="c9__pct">%</span></div>
       <div class="c9__say">
@@ -1440,15 +1446,15 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
     <div class="hstrip__vp">
       <div class="hstrip__row">
         <article class="hpanel hpanel--p">
-          <figure class="hpanel__media"><img src="media/keyart-venus-statue.webp" alt="Venus-szobor kapucnis pulóverben, arany Spirante szem-szalaggal — No Trends, This is Icon"></figure>
+          <figure class="hpanel__media"><img src="media/keyart-venus-statue.webp" srcset="media/keyart-venus-statue-720.webp 720w, media/keyart-venus-statue-1080.webp 1080w, media/keyart-venus-statue.webp 1400w" sizes="(max-width:768px) 86vw, 44vw" loading="lazy" decoding="async" alt="Venus-szobor kapucnis pulóverben, arany Spirante szem-szalaggal — No Trends, This is Icon"></figure>
           <div class="hpanel__copy"><span class="hpanel__no">01</span><h3>Az élet nem a megszokásról szól.</h3><p>Hanem a pillanatokról.</p></div>
         </article>
         <article class="hpanel hpanel--p">
-          <figure class="hpanel__media"><img src="media/keyart-monalisa.webp" alt="Mona Lisa nyalókával, arany Spirante szem-szalaggal — No Trends, This is Icon"></figure>
+          <figure class="hpanel__media"><img src="media/keyart-monalisa.webp" srcset="media/keyart-monalisa-720.webp 720w, media/keyart-monalisa-1080.webp 1080w, media/keyart-monalisa.webp 1400w" sizes="(max-width:768px) 86vw, 44vw" loading="lazy" decoding="async" alt="Mona Lisa nyalókával, arany Spirante szem-szalaggal — No Trends, This is Icon"></figure>
           <div class="hpanel__copy"><span class="hpanel__no">02</span><h3>Amikor megáll az idő egy kortyra.</h3><p>Amikor egy íz, egy illat vagy egy találkozás történetté válik.</p></div>
         </article>
         <article class="hpanel">
-          <figure class="hpanel__media"><img src="media/brand-fireworks.webp" alt="Iconic nights"></figure>
+          <figure class="hpanel__media"><img src="media/brand-fireworks.webp" srcset="media/brand-fireworks-720.webp 720w, media/brand-fireworks.webp 1054w" sizes="(max-width:768px) 86vw, 44vw" loading="lazy" decoding="async" alt="Iconic nights"></figure>
           <span class="hpanel__no">03</span>
           <div class="hpanel__copy"><h3>Itt valami más történik.</h3><p>Egy ikonikus megjelenés, amely már messziről üzeni: itt valami más történik.</p></div>
         </article>
@@ -1466,7 +1472,7 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
 
   <!-- KEYART band (felhuzodó kartya) -->
   <section class="band c-card band--scene">
-    <div class="band__bg" data-parallax="0.1"><img src="media/brand-festival.webp" alt="ICON Spirante fesztivál tömeg, jó vibe"></div>
+    <div class="band__bg" data-parallax="0.1"><img src="media/brand-festival.webp" srcset="media/brand-festival-720.webp 720w, media/brand-festival.webp 1086w" sizes="100vw" loading="lazy" decoding="async" alt="ICON Spirante fesztivál tömeg, jó vibe"></div>
     <div class="band__scrim"></div>
     <div class="band__in">
       <hr class="scene__rule" data-reveal data-d="1" aria-hidden="true">
@@ -1489,11 +1495,11 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   <!-- DIAGONAL WIPE divider — fesztival reveal -->
   <div class="dwipe" aria-hidden="false">
     <div class="dwipe__base">
-      <img src="media/brand-festival.webp" alt="" aria-hidden="true">
+      <img src="media/brand-festival-720.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <span class="dwipe__txt">görgess</span>
     </div>
     <div class="dwipe__over">
-      <img src="media/party-festival.webp" alt="" aria-hidden="true">
+      <img src="media/party-festival-720.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <span class="dwipe__graf">De ez valójában<br><em>nem az italról szól.</em></span>
     </div>
   </div>
@@ -1507,9 +1513,9 @@ body.show-can .nav__switch:hover{background:var(--pink);color:var(--ink)}
   <section class="wrap c-card" id="sec-editions">
     <span class="ed-stamp" data-reveal="left">És a történet főszereplője ők maguk</span>
     <div class="collage">
-      <figure class="poster" data-slide="left"><img src="media/keyart-gold-emblem.webp" alt="ICON Spirante IX arany festék-kehely embléma fekete alapon"><figcaption class="poster__cap">Ikonikus megjelenés<small>ICON Spirante IX</small></figcaption></figure>
-      <figure class="poster" data-slide="left"><img src="media/brand-pool.webp" alt="ICON Spirante beach club"><figcaption class="poster__cap">Inspiráló életérzés<small>ICON Spirante IX</small></figcaption></figure>
-      <figure class="poster" data-slide="left"><img src="media/party-festival.webp" alt="ICON Spirante éjszaka"><figcaption class="poster__cap">Modern stílus<small>ICON Spirante IX</small></figcaption></figure>
+      <figure class="poster" data-slide="left"><img src="media/keyart-gold-emblem.webp" srcset="media/keyart-gold-emblem-720.webp 720w, media/keyart-gold-emblem-1080.webp 1080w, media/keyart-gold-emblem.webp 1400w" sizes="(max-width:768px) 92vw, 30vw" loading="lazy" decoding="async" alt="ICON Spirante IX arany festék-kehely embléma fekete alapon"><figcaption class="poster__cap">Ikonikus megjelenés<small>ICON Spirante IX</small></figcaption></figure>
+      <figure class="poster" data-slide="left"><img src="media/brand-pool.webp" srcset="media/brand-pool-720.webp 720w, media/brand-pool.webp 1086w" sizes="(max-width:768px) 92vw, 30vw" loading="lazy" decoding="async" alt="ICON Spirante beach club"><figcaption class="poster__cap">Inspiráló életérzés<small>ICON Spirante IX</small></figcaption></figure>
+      <figure class="poster" data-slide="left"><img src="media/party-festival.webp" srcset="media/party-festival-720.webp 720w, media/party-festival.webp 1053w" sizes="(max-width:768px) 92vw, 30vw" loading="lazy" decoding="async" alt="ICON Spirante éjszaka"><figcaption class="poster__cap">Modern stílus<small>ICON Spirante IX</small></figcaption></figure>
     </div>
   </section>
 
